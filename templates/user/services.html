@@ -1,0 +1,8 @@
+<div>Nos services</div>
+<div>
+    {% for service in service %}
+        <a>{{ service.titre }}</a> <br>
+        <a>{{ service.description }}</a> <br>
+        <a><img src="{{ service.image.url }}" alt="{{ service.titre }} image" width="100"></a> <br>
+    {% endfor %}
+</div>

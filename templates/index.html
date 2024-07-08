@@ -1,0 +1,499 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>KOUTY Medical service </title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+ <!-- Favicons -->
+<link href="{% static 'img/KOUTY.png' %}" rel="icon">
+<link href="{% static 'img/KOUTY.png' %}" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap-icons/bootstrap-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/aos/aos.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/fontawesome-free/css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/glightbox/css/glightbox.min.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/swiper/swiper-bundle.min.css' %}">
+
+    <!-- Main CSS File -->
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+
+
+  <!-- =======================================================
+  * Template Name: Medilab
+  * Template URL: https://bootstrapmade.com/medilab-free-medical-bootstrap-theme/
+  * Updated: Jun 29 2024 with Bootstrap v5.3.3
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body class="index-page">
+
+  <header id="header" class="header sticky-top">
+
+    <div class="topbar d-flex align-items-center">
+      <div class="container d-flex justify-content-center justify-content-md-between">
+        <div class="contact-info d-flex align-items-center">
+          <i class="bi bi-envelope d-flex align-items-center"><a href="mailto:INFO@KOUTY.MA">INFO@KOUTY.MA</a></i>
+          <i class="bi bi-phone d-flex align-items-center ms-4"><span>+212 (0) 674 04 50 01</span></i>
+        </div>
+        <div class="social-links d-none d-md-flex align-items-center">
+          <a href="#" class="twitter"><i class="bi bi-twitter-x"></i></a>
+          <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+        </div>
+      </div>
+    </div><!-- End Top Bar -->
+
+    <div class="branding d-flex align-items-center">
+
+      <div class="container position-relative d-flex align-items-center justify-content-between">
+        <a href="index.html" class="logo d-flex align-items-center me-auto">
+          <!-- Uncomment the line below if you also wish to use an image logo -->
+          <img src="{% static 'img/KOUTY.png' %}" alt="" class="sitename">
+          <h1 class="sitename">KOUTY</h1>
+        </a>
+
+        <nav id="navmenu" class="navmenu">
+          <ul>
+            <li><a href="#hero" class="active">Accueil<br></a></li>
+            <li><a href="#services">Nos Services</a></li>
+            <li><a href="#products">Nos Produits</a></li>
+            <li><a href="#departments">Nos partenaires</a></li>
+            <li><a href="#doctors">Nos Spécialistes</a></li>
+          </ul>
+          <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+        </nav>
+
+        <a class="cta-btn d-none d-sm-block" href="#contact">Nous contactez</a>
+
+      </div>
+
+    </div>
+
+  </header>
+    <!-- Hero Section -->
+    <section id="hero" class="hero section light-background">
+
+      <img src="{% static '/img/bg.jpg' %}" alt="" data-aos="fade-in">
+
+      <div class="container position-relative">
+
+        <div class="welcome position-relative" data-aos="fade-down" data-aos-delay="100">
+          <h2>Bienvenu sur KOUTY Medical Service</h2>
+          <p>Chez KOUTY Médical Service, nous nous engageons à vous offrir des soins médicaux de qualité supérieure, accessibles et sécurisés, où que vous soyez. Faites confiance à notre expertise pour vous accompagner à chaque étape de votre parcours de santé.</p>
+        </div><!-- End Welcome -->
+
+        <div class="content row gy-4">
+          <div class="col-lg-4 d-flex align-items-stretch">
+            <div class="why-box" data-aos="zoom-out" data-aos-delay="200">
+              <h3>Pourquoi choisir KOUTY Medical Service</h3>
+              <p>
+                Choisissez KOUTY Médical Service pour bénéficier de soins médicaux de premier ordre, orchestrés par une équipe dévouée et soutenus par notre réseau de partenaires de renommée mondiale.
+                  Nous nous engageons à rendre vos voyages médicaux aussi confortables et sécurisés que possible, avec un service personnalisé qui répond à vos besoins médicaux spécifiques. </p>
+              <div class="text-center">
+                <a href="#about" class="more-btn"><span>Learn More</span> <i class="bi bi-chevron-right"></i></a>
+              </div>
+            </div>
+          </div><!-- End Why Box -->
+
+          <div class="col-lg-8 d-flex align-items-stretch">
+            <div class="d-flex flex-column justify-content-center">
+                <div class="row gy-4">
+
+                    <div class="col-xl-4 d-flex align-items-stretch">
+                        <div class="icon-box" data-aos="zoom-out" data-aos-delay="300">
+                            <i class="bi bi-people"></i>
+                            <h4>Partenariat avec des Spécialistes Éminents</h4>
+                            <p>Nous travaillons avec des spécialistes renommés dans divers domaines médicaux pour assurer des diagnostics précis et des traitements efficaces. </p>
+                        </div>
+                    </div><!-- End Icon Box -->
+
+                    <div class="col-xl-4 d-flex align-items-stretch">
+                        <div class="icon-box" data-aos="zoom-out" data-aos-delay="400">
+                            <i class="bi bi-heart-pulse"></i>
+                            <h4>Engagement envers la Santé</h4>
+                            <p>Notre mission est d'améliorer le système de santé en Afrique en rendant les soins médicaux accessibles même dans les régions les plus reculées.</p>
+                        </div>
+                    </div><!-- End Icon Box -->
+
+                    <div class="col-xl-4 d-flex align-items-stretch">
+                        <div class="icon-box" data-aos="zoom-out" data-aos-delay="500">
+                            <i class="bi bi-hospital"></i>
+                            <h4>Expertise Médicale</h4>
+                            <p>Nous sommes spécialisés dans le domaine des services médicaux, avec une équipe dédiée à coordonner tous les aspects de votre voyage médical, depuis les consultations jusqu'aux procédures chirurgicales.</p>
+                        </div>
+                    </div><!-- End Icon Box -->
+
+                </div>
+            </div>
+          </div>
+        </div><!-- End  Content-->
+
+      </div>
+
+    </section><!-- /Hero Section -->
+
+      <!-- About Section -->
+    <section id="about" class="about section">
+
+      <div class="container">
+
+        <div class="row gy-4 gx-5">
+
+
+          <div class="col-lg-6 content" data-aos="fade-up" data-aos-delay="100">
+            <h3>À Propos de nous</h3>
+            <p>
+              Chez KOUTY Médical Service, nous nous consacrons à améliorer l'accès aux soins de santé de qualité, en offrant des solutions intégrées pour les voyages médicaux, l'hébergement adapté et la vente de matériel médical.
+            </p>
+            <ul>
+              <li>
+                <i class="fas fa-hospital-user"></i>
+                <div>
+                  <h5>Expérience médicale de premier ordre</h5>
+                  <p>Nous collaborons avec les meilleurs établissements médicaux pour assurer des soins sûrs et efficaces à nos patients.</p>
+                </div>
+              </li>
+              <li>
+                <i class="fas fa-hotel"></i>
+                <div>
+                  <h5>Hébergement confortable</h5>
+                  <p>Nous proposons un hébergement adapté, sélectionné pour sa proximité et son confort, facilitant un rétablissement optimal.</p>
+                </div>
+              </li>
+              <li>
+                <i class="fas fa-shipping-fast"></i>
+                <div>
+                  <h5>Service de transport sécurisé</h5>
+                  <p>Nous assurons un transport sécurisé depuis l'aéroport et vers les rendez-vous médicaux, garantissant un déplacement sans stress pour nos patients.</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section><!-- /About Section -->
+
+        <!-- Services Section -->
+    <section id="services" class="services section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Services</h2>
+        <p>Nous vous proposons divers services.</p>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+        <div class="row gy-4">
+          {% for service in service %}
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" >
+              <div class="service-item position-relative">
+                <div class="icon">
+                  <a><img src="{{ service.image.url }}" alt="{{ service.titre }} image" width="100"></a>
+                </div>
+                <a href="#" class="stretched-link">
+                  <h3>{{ service.titre }}</h3>
+                </a>
+                <p>{{ service.description }}</p>
+              </div>
+            </div><!-- End Service Item -->
+          {% endfor %}
+        </div>
+      </div>
+
+    </section><!-- /Services Section -->
+    <!-- Products Section -->
+    <section id="products" class="services section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Nos Produits</h2>
+        <p>Découvrez notre gamme de produits de qualité.</p>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+        <div class="row gy-4">
+          {% for produit in produit %}
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" >
+              <div class="service-item position-relative">
+                <div class="icon">
+                  <a><img src="{{ produit.image.url }}" alt="{{ produit.titre }} image" width="100"></a>
+                </div>
+                <a href="#" class="stretched-link">
+                  <h3>{{ produit.titre }}</h3>
+                </a>
+                <p>{{ produit.description }}</p>
+              </div>
+            </div><!-- End Product Item -->
+          {% endfor %}
+        </div>
+      </div>
+
+    </section><!-- /Products Section -->
+
+
+
+    <!-- Departments Section -->
+    <section id="departments" class="departments section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Nos partenaires</h2>
+        <p>Voici nos divers partenaires</p>
+      </div><!-- End Section Title -->
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+       <div class="row">
+          {% for partenaire in partenaire %}
+            <div class="col-md-4">
+              <div class="card partner-card">
+                <img src="{{ partenaire.image.url }}" class="card-img-top" alt="{{ partenaire.nom }} image">
+                <div class="card-body">
+                  <h5 class="card-title partner-card-title">{{ partenaire.nom }}</h5>
+                  <p class="card-text">{{ partenaire.description }}</p>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+
+    </section><!-- /Departments Section -->
+
+       <!-- Doctors Section -->
+    <section id="doctors" class="doctors section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Nos Spécialistes</h2>
+        <p>Découvrez notre équipe de spécialistes dédiés à votre santé.</p>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+        <div class="row gy-4">
+
+          {% for specialiste in specialiste %}
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" >
+            <div class="team-member d-flex align-items-start">
+              <div class="pic"><img src="{{ specialiste.image.url }}" class="img-fluid" alt="{{ specialiste.nom }}"></div>
+              <div class="member-info">
+                <h4>{{ specialiste.nom }}</h4>
+                <span>{{ specialiste.role }}</span>
+                <div class="social">
+                  <a href=""><i class="bi bi-twitter"></i></a>
+                  <a href=""><i class="bi bi-facebook"></i></a>
+                  <a href=""><i class="bi bi-instagram"></i></a>
+                  <a href=""><i class="bi bi-linkedin"></i></a>
+                </div>
+              </div>
+            </div>
+          </div><!-- End Team Member -->
+          {% endfor %}
+
+        </div>
+      </div>
+
+    </section><!-- /Doctors Section -->
+
+    <!-- Contact Section -->
+<section id="contact" class="contact section">
+
+  <!-- Section Title -->
+  <div class="container section-title" data-aos="fade-up">
+    <h2>Contact</h2>
+    <p>Entrez en contact avec nous dès maintenant</p>
+  </div><!-- End Section Title -->
+
+  <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+    <div class="row gy-4">
+
+      <div class="col-lg-4">
+        <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
+          <i class="bi bi-geo-alt flex-shrink-0"></i>
+          <div>
+            <h3>Localisation</h3>
+            <p>293 BD ABDELMOUMEN 5 ETG APPT 1 CASABLANCA-MAROC</p>
+          </div>
+        </div><!-- End Info Item -->
+
+        <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
+          <i class="bi bi-telephone flex-shrink-0"></i>
+          <div>
+            <h3>Appellez-nous</h3>
+            <p>+212 (0) 674 04 50 01</p>
+          </div>
+        </div><!-- End Info Item -->
+
+        <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="500">
+          <i class="bi bi-envelope flex-shrink-0"></i>
+          <div>
+            <h3>Envoyez-nous un mail</h3>
+            <p>INFO@KOUTY.MA</p>
+          </div>
+        </div><!-- End Info Item -->
+
+      </div>
+
+      <div class="col-lg-8">
+      <!--  <div class="president-message">
+          <h2>MOT DU FONDATEUR</h2>
+          <p>La santé est une bénédiction dont la valeur n’est perçue que lorsqu’elle commence à se dégrader.
+          Ces dernières années ont été marquées par plusieurs vagues d’épidémies qui ont mis en lumière les failles de notre système de santé, le manque de matériel médical, le manque de spécialistes, et des structures médicales adéquates dans certaines régions, etc.
+          Nous n’allons à l’hôpital que lorsque c’est grave; nos habitudes de santé doivent changer; j’en ai pris conscience qu’un peu tard malheureusement.
+          La mort de ma grand-mère suite à une longue maladie, voir son visage perdre jour après jour son sourire et sa joie de vivre a été pour moi un choc.
+          J’ai donc fondé KOUTY MÉDICAL SERVICE pour permettre à toutes les personnes, même dans les régions les plus reculées d’avoir accès aux soins qu’ils méritent.</p>
+          <p><strong>ISSOUF SAWADOGO</strong></p>
+        </div> -->
+
+        <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
+          <div class="row gy-4">
+
+            <div class="col-md-6">
+              <input type="text" name="name" class="form-control" placeholder="Your Name" required>
+            </div>
+
+            <div class="col-md-6">
+              <input type="email" class="form-control" name="email" placeholder="Your Email" required>
+            </div>
+
+            <div class="col-md-12">
+              <input type="text" class="form-control" name="subject" placeholder="Subject" required>
+            </div>
+
+            <div class="col-md-12">
+              <textarea class="form-control" name="message" rows="6" placeholder="Message" required></textarea>
+            </div>
+
+            <div class="col-md-12 text-center">
+              <div class="loading">Loading</div>
+              <div class="error-message"></div>
+              <div class="sent-message">Your message has been sent. Thank you!</div>
+
+              <button type="submit">Send Message</button>
+            </div>
+
+          </div>
+        </form>
+      </div><!-- End Contact Form -->
+
+    </div>
+
+  </div>
+
+</section><!-- /Contact Section -->
+
+
+  </main>
+
+    <footer id="footer" class="footer light-background">
+    <div class="container footer-top">
+      <div class="row gy-4">
+        <div class="col-lg-4 col-md-6 footer-about">
+          <a href="index.html" class="logo d-flex align-items-center">
+            <img src="{% static 'img/KOUTY.png' %}" alt="KOUTY Medical Service Logo" class="sitename">
+            <span class="sitename">KOUTY Medical Service</span>
+          </a>
+          <div class="footer-contact pt-3">
+            <p>293 BD ABDELMOUMEN 5 ETG APPT 1</p>
+            <p>CASABLANCA-MAROC</p>
+            <p class="mt-3"><strong>Téléphone:</strong> <span>+212 (0) 674 04 50 01</span></p>
+            <p><strong>Email:</strong> <span>INFO@KOUTY.MA</span></p>
+          </div>
+          <div class="social-links d-flex mt-4">
+            <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+            <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+            <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-md-3 footer-links">
+          <h4>Liens Utiles</h4>
+          <ul>
+            <li><a href="#">Accueil</a></li>
+            <li><a href="#">À propos</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Politique de confidentialité</a></li>
+            <li><a href="#">Conditions d'utilisation</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-2 col-md-3 footer-links">
+          <h4>Nos Services</h4>
+          <ul>
+            <li><a href="#">Voyages Médicaux</a></li>
+            <li><a href="#">Hébergement Médical</a></li>
+            <li><a href="#">Transport</a></li>
+            <li><a href="#">Vente de Matériel Médical</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-2 col-md-3 footer-links">
+          <h4>Liens Divers</h4>
+          <ul>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Témoignages</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">Plan du site</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-2 col-md-3 footer-links">
+          <h4>Suivez-nous</h4>
+          <ul>
+            <li><a href="#" class="twitter">Twitter</a></li>
+            <li><a href="#" class="facebook">Facebook</a></li>
+            <li><a href="#" class="instagram">Instagram</a></li>
+            <li><a href="#" class="linkedin">LinkedIn</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container copyright text-center mt-4">
+      <p>&copy; 2024 <strong>KOUTY Medical Service</strong>. Tous droits réservés.</p>
+    </div>
+  </footer>
+
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+      <!-- Vendor JS Files -->
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'vendor/php-email-form/validate.js' %}"></script>
+    <script src="{% static 'vendor/aos/aos.js' %}"></script>
+    <script src="{% static 'vendor/glightbox/js/glightbox.min.js' %}"></script>
+    <script src="{% static 'vendor/purecounter/purecounter_vanilla.js' %}"></script>
+    <script src="{% static 'vendor/swiper/swiper-bundle.min.js' %}"></script>
+
+    <!-- Main JS File -->
+    <script src="{% static 'js/main.js' %}"></script>
+
+
+</body>
+
+</html>

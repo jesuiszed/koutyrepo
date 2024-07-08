@@ -1,0 +1,7 @@
+<div>
+    {% for partenaire in partenaire %}
+        <a>{{ partenaire.nom }}</a> <br>
+        <a>{{ partenaire.description }}</a> <br>
+        <a><img src="{{ partenaire.image.url }}" alt="{{ partenaire.partenaire }} image" width="100"></a> <br>
+    {% endfor %}
+</div>

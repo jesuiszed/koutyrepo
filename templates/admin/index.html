@@ -1,0 +1,121 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kouty Medical Service - Dashboard</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&family=Roboto&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Kouty Medical Service - Dashboard</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'koutyUsers:index' %}"><i class="fa-solid fa-user"></i> Mon compte</a>
+        </li>
+        {% if user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'koutyUsers:index' %}"><i class="fa-solid fa-arrow-right-from-bracket"></i> Déconnexion</a>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container-fluid">
+    <div class="row">
+      <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+        <div class="sidebar-sticky">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link active" href="{% url 'koutyUsers:index' %}">
+                <i class="fas fa-tachometer-alt"></i> Dashboard <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'gestion_produits' %}">
+                <i class="fas fa-tasks"></i> Produit
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'gestion_services' %}">
+                <i class="fas fa-calendar-check"></i> Service
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'gestion_partenaires' %}">
+                <i class="fas fa-users"></i> Partenaire
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'gestion_specialistes' %}">
+                <i class="fas fa-money-bill-alt"></i> Specialite
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+                {% block cp %}
+
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+          <h1 class="h2">Dashboard</h1>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Bienvenue</h5>
+                <p class="card-text">Gérez facilement vos voyages médicaux et plus encore.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Fonctionnalités clés</h5>
+                <ul>
+                  <li>Gestion des voyages médicaux</li>
+                  <li>Réservations en ligne</li>
+                  <li>Gestion des hébergements médicaux</li>
+                  <li>Transport et logistique</li>
+                  <li>Vente de matériel médical</li>
+                  <li>Statistiques et rapports</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+          {% endblock %}
+      </main>
+    </div>
+  </div>
+
+  <footer class="footer mt-auto py-3">
+    <div class="container text-center">
+      <p>&copy; 2023 Kouty Medical Service. Tous droits réservés.</p>
+    </div>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

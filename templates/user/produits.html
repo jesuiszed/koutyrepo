@@ -1,0 +1,8 @@
+<div>Nos produits</div>
+<div>
+    {% for produit in produit %}
+        <a>{{ produit.titre }}</a> <br>
+        <a>{{ produit.description }}</a> <br>
+        <a><img src="{{ produit.image.url }}" alt="{{ produit.titre }} image" width="100"></a> <br>
+    {% endfor %}
+</div>

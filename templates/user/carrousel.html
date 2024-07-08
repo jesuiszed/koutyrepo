@@ -1,0 +1,89 @@
+<style>
+    
+        .carousel {
+            width: 80%;
+            max-width: 600px;
+            overflow: hidden;
+            position: relative;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+        .carousel-inner {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        .carousel-item {
+            min-width: 100%;
+            box-sizing: border-box;
+            padding: 20px;
+            text-align: center;
+        }
+        .carousel-controls {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+        .carousel-control {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
+    </style>
+<body >
+    <div class="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item">
+                <h2>Slide 1</h2>
+                <p>Ceci est le texte de la première diapositive.</p>
+            </div>
+            <div class="carousel-item">
+                <h2>Slide 2</h2>
+                <p>Ceci est le texte de la deuxième diapositive.</p>
+            </div>
+            <div class="carousel-item">
+                <h2>Slide 3</h2>
+                <p>Ceci est le texte de la troisième diapositive.</p>
+            </div>
+        </div>
+        <div class="carousel-controls">
+            <button class="carousel-control prev" onclick="prevSlide()">&#10094;</button>
+            <button class="carousel-control next" onclick="nextSlide()">&#10095;</button>
+        </div>
+    </div>
+    <script>
+        let currentIndex = 0;
+
+        function showSlide(index) {
+            const slides = document.querySelectorAll('.carousel-item');
+            const totalSlides = slides.length;
+
+            if (index >= totalSlides) {
+                currentIndex = 0;
+            } else if (index < 0) {
+                currentIndex = totalSlides - 1;
+            } else {
+                currentIndex = index;
+            }
+
+            const offset = -currentIndex * 100;
+            document.querySelector('.carousel-inner').style.transform = `translateX(${offset}%)`;
+        }
+
+        function nextSlide() {
+            showSlide(currentIndex + 1);
+        }
+
+        function prevSlide() {
+            showSlide(currentIndex - 1);
+        }
+
+        // Auto slide every 3 seconds
+        setInterval(nextSlide, 3000);
+    </script>
+</body>

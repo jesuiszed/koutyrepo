@@ -1,0 +1,49 @@
+{% extends 'admin/index.html' %}
+
+{% block cp %}
+<div class="container">
+    <h1 class="my-4">Gestion des Spécialistes</h1>
+
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Ajouter un Spécialiste</h2>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary mt-3" name="ajouter">Ajouter</button>
+            </form>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <h2>Liste des Spécialistes</h2>
+            <ul class="list-group">
+                {% for specialiste in specialistes %}
+                <li class="list-group-item">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h5>{{ specialiste.nom }}</h5>
+                            <p>{{ specialiste.role }}</p>
+                        </div>
+                        <div>
+                            <form method="post" enctype="multipart/form-data" class="d-inline">
+                                {% csrf_token %}
+                                <input type="hidden" name="specialiste_id" value="{{ specialiste.id }}">
+                                <input type="text" class="form-control" name="nouveau_nom" value="{{ specialiste.nom }}">
+                                <input type="text" class="form-control mt-2" name="nouveau_role" value="{{ specialiste.role }}">
+                                <input type="file" class="mt-2" name="nouvelle_image">
+                                <button type="submit" class="btn btn-primary btn-sm mt-2" name="modifier">Modifier</button>
+                                <button type="submit" class="btn btn-danger btn-sm mt-2" name="supprimer">Supprimer</button>
+                            </form>
+                        </div>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
