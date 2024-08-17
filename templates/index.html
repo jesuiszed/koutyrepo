@@ -10,8 +10,8 @@
   <meta content="" name="keywords">
 
  <!-- Favicons -->
-<link href="{% static 'img/KOUTY.png' %}" rel="icon">
-<link href="{% static 'img/KOUTY.png' %}" rel="apple-touch-icon">
+<link href="{% static 'img/LOGO KOUTY 2.png' %}" rel="icon">
+<link href="{% static 'img/LOGO KOUTY 2.png' %}" rel="apple-touch-icon">
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
@@ -50,10 +50,9 @@
           <i class="bi bi-phone d-flex align-items-center ms-4"><span>+212 (0) 674 04 50 01</span></i>
         </div>
         <div class="social-links d-none d-md-flex align-items-center">
-          <a href="#" class="twitter"><i class="bi bi-twitter-x"></i></a>
-          <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-          <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-          <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+          <a href="https://www.facebook.com/profile.php?id=61555253916525&mibextid=LQQJ4d" class="facebook"><i class="bi bi-facebook"></i></a>
+          <a href="https://www.instagram.com/kouty_medical_service?igsh=Y3l6OHN3Z2FnZTdm" class="instagram"><i class="bi bi-instagram"></i></a>
+          <a href="https://www.linkedin.com/company/kouty-medical-service/" class="linkedin"><i class="bi bi-linkedin"></i></a>
         </div>
       </div>
     </div><!-- End Top Bar -->
@@ -63,12 +62,11 @@
       <div class="container position-relative d-flex align-items-center justify-content-between">
         <a href="index.html" class="logo d-flex align-items-center me-auto">
           <!-- Uncomment the line below if you also wish to use an image logo -->
-          <img src="{% static 'img/KOUTY.png' %}" alt="" class="sitename">
-          <h1 class="sitename">KOUTY</h1>
+          <img src="{% static 'img/LOGO KOUTY 2.png' %}" alt="" class="sitename">
         </a>
 
         <nav id="navmenu" class="navmenu">
-          <ul>
+          <ul style="list-style: none">
             <li><a href="#hero" class="active">Accueil<br></a></li>
             <li><a href="#services">Nos Services</a></li>
             <li><a href="#products">Nos Produits</a></li>
@@ -77,8 +75,10 @@
           </ul>
           <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </nav>
+            <a class="cta-btn d-none d-sm-block" href="#contact">Nous contactez</a>
 
-        <a class="cta-btn d-none d-sm-block" href="#contact">Nous contactez</a>
+          
+        
 
       </div>
 
@@ -88,13 +88,13 @@
     <!-- Hero Section -->
     <section id="hero" class="hero section light-background">
 
-      <img src="{% static '/img/bg.jpg' %}" alt="" data-aos="fade-in">
+      <img src="{% static '/img/kouty_bg.jpg' %}" alt="" data-aos="fade-in">
 
       <div class="container position-relative">
 
         <div class="welcome position-relative" data-aos="fade-down" data-aos-delay="100">
           <h2>Bienvenu sur KOUTY Medical Service</h2>
-          <p>Chez KOUTY Médical Service, nous nous engageons à vous offrir des soins médicaux de qualité supérieure, accessibles et sécurisés, où que vous soyez. Faites confiance à notre expertise pour vous accompagner à chaque étape de votre parcours de santé.</p>
+            <p>Votre partenaire pour des soins médicaux de qualité .</p>
         </div><!-- End Welcome -->
 
         <div class="content row gy-4">
@@ -105,7 +105,7 @@
                 Choisissez KOUTY Médical Service pour bénéficier de soins médicaux de premier ordre, orchestrés par une équipe dévouée et soutenus par notre réseau de partenaires de renommée mondiale.
                   Nous nous engageons à rendre vos voyages médicaux aussi confortables et sécurisés que possible, avec un service personnalisé qui répond à vos besoins médicaux spécifiques. </p>
               <div class="text-center">
-                <a href="#about" class="more-btn"><span>Learn More</span> <i class="bi bi-chevron-right"></i></a>
+                <a href="#about" class="more-btn"><span>Voir plus</span> <i class="bi bi-chevron-right"></i></a>
               </div>
             </div>
           </div><!-- End Why Box -->
@@ -153,8 +153,10 @@
       <div class="container">
 
         <div class="row gy-4 gx-5">
-
-
+            
+            <div class="col-lg-6 position-relative align-self-start" data-aos="fade-up" data-aos-delay="200">
+                <img src="{% static 'img/departments-1.jpg' %}"class="img-fluid" alt="">
+            </div>
           <div class="col-lg-6 content" data-aos="fade-up" data-aos-delay="100">
             <h3>À Propos de nous</h3>
             <p>
@@ -201,22 +203,23 @@
       </div><!-- End Section Title -->
 
       <div class="container">
-        <div class="row gy-4">
-          {% for service in service %}
-            <div class="col-lg-4 col-md-6" data-aos="fade-up" >
-              <div class="service-item position-relative">
-                <div class="icon">
-                  <a><img src="{{ service.image.url }}" alt="{{ service.titre }} image" width="100"></a>
-                </div>
-                <a href="#" class="stretched-link">
-                  <h3>{{ service.titre }}</h3>
-                </a>
-                <p>{{ service.description }}</p>
-              </div>
-            </div><!-- End Service Item -->
-          {% endfor %}
+  <div class="row gy-4">
+    {% for service in service %}
+      <div class="col-lg-4 col-md-6" data-aos="fade-up">
+        <div class="service-item position-relative">
+          <div style="width: 100%; height: 300px; overflow: hidden; display: flex; align-items: center; justify-content: center;">
+            <img src="{{ service.image.url }}" alt="{{ service.titre }} image" style="width: 100%; height: 100%; object-fit: cover;">
+          </div>
+          <a  class="stretched-link">
+            <h3>{{ service.titre }}</h3>
+          </a>
+          <p>{{ service.description }}</p>
         </div>
-      </div>
+      </div><!-- End Service Item -->
+    {% endfor %}
+  </div>
+</div>
+
 
     </section><!-- /Services Section -->
     <!-- Products Section -->
@@ -229,22 +232,23 @@
       </div><!-- End Section Title -->
 
       <div class="container">
-        <div class="row gy-4">
-          {% for produit in produit %}
-            <div class="col-lg-4 col-md-6" data-aos="fade-up" >
-              <div class="service-item position-relative">
-                <div class="icon">
-                  <a><img src="{{ produit.image.url }}" alt="{{ produit.titre }} image" width="100"></a>
-                </div>
-                <a href="#" class="stretched-link">
-                  <h3>{{ produit.titre }}</h3>
-                </a>
-                <p>{{ produit.description }}</p>
-              </div>
-            </div><!-- End Product Item -->
-          {% endfor %}
+  <div class="row gy-4">
+    {% for produit in produit %}
+      <div class="col-lg-4 col-md-6" data-aos="fade-up">
+        <div class="service-item position-relative">
+          <div style="width: 100%; height: 200px; overflow: hidden; display: flex; align-items: center; justify-content: center;">
+            <img src="{{ produit.image.url }}" alt="{{ produit.titre }} image" style="width: 100%; height: 100%; object-fit: cover;">
+          </div>
+          <a href="#" class="stretched-link">
+            <h3>{{ produit.titre }}</h3>
+          </a>
+          <p>{{ produit.description }}</p>
         </div>
-      </div>
+      </div><!-- End Product Item -->
+    {% endfor %}
+  </div>
+</div>
+
 
     </section><!-- /Products Section -->
 
@@ -260,23 +264,25 @@
       </div><!-- End Section Title -->
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-       <div class="row">
-          {% for partenaire in partenaire %}
-            <div class="col-md-4">
-              <div class="card partner-card">
-                <img src="{{ partenaire.image.url }}" class="card-img-top" alt="{{ partenaire.nom }} image">
-                <div class="card-body">
-                  <h5 class="card-title partner-card-title">{{ partenaire.nom }}</h5>
-                  <p class="card-text">{{ partenaire.description }}</p>
-                </div>
-              </div>
-            </div>
-          {% endfor %}
+  <div class="row">
+    {% for partenaire in partenaire %}
+      <div class="col-md-4">
+        <div class="card partner-card">
+          <div style="width: 100%; height: 200px; overflow: hidden;">
+            <img src="{{ partenaire.image.url }}" class="card-img-top" alt="{{ partenaire.nom }} image" style="width: 100%; height: 100%; object-fit: cover;">
+          </div>
+          <div class="card-body">
+            <h5 class="card-title partner-card-title">{{ partenaire.nom }}</h5>
+            <p class="card-text">{{ partenaire.description }}</p>
+          </div>
         </div>
       </div>
+    {% endfor %}
+  </div>
+</div>
 
-    </section><!-- /Departments Section -->
+
+    </section><!-- Departments Section -->
 
        <!-- Doctors Section -->
     <section id="doctors" class="doctors section">
@@ -288,28 +294,24 @@
       </div><!-- End Section Title -->
 
       <div class="container">
-        <div class="row gy-4">
-
-          {% for specialiste in specialiste %}
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" >
-            <div class="team-member d-flex align-items-start">
-              <div class="pic"><img src="{{ specialiste.image.url }}" class="img-fluid" alt="{{ specialiste.nom }}"></div>
-              <div class="member-info">
-                <h4>{{ specialiste.nom }}</h4>
-                <span>{{ specialiste.role }}</span>
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-            </div>
-          </div><!-- End Team Member -->
-          {% endfor %}
-
+  <div class="row gy-4">
+    {% for specialiste in specialiste %}
+      <div class="col-lg-4 col-md-6" data-aos="fade-up">
+        <div class="team-member d-flex align-items-start">
+          <div class="pic" style="width: 150px; height: 150px; overflow: hidden; border-radius: 50%;">
+            <img src="{{ specialiste.image.url }}" class="img-fluid" alt="{{ specialiste.nom }}" style="width: 100%; height: 100%; object-fit: cover;">
+          </div>
+          <div class="member-info">
+            <h4>{{ specialiste.nom }}</h4>
+            <span>{{ specialiste.role }}</span>
+            
+          </div>
         </div>
-      </div>
+      </div><!-- End Team Member -->
+    {% endfor %}
+  </div>
+</div>
+
 
     </section><!-- /Doctors Section -->
 
@@ -349,57 +351,46 @@
             <h3>Envoyez-nous un mail</h3>
             <p>INFO@KOUTY.MA</p>
           </div>
-        </div><!-- End Info Item -->
+        </div> <!-- End Info Item -->
 
       </div>
 
       <div class="col-lg-8">
-      <!--  <div class="president-message">
-          <h2>MOT DU FONDATEUR</h2>
-          <p>La santé est une bénédiction dont la valeur n’est perçue que lorsqu’elle commence à se dégrader.
-          Ces dernières années ont été marquées par plusieurs vagues d’épidémies qui ont mis en lumière les failles de notre système de santé, le manque de matériel médical, le manque de spécialistes, et des structures médicales adéquates dans certaines régions, etc.
-          Nous n’allons à l’hôpital que lorsque c’est grave; nos habitudes de santé doivent changer; j’en ai pris conscience qu’un peu tard malheureusement.
-          La mort de ma grand-mère suite à une longue maladie, voir son visage perdre jour après jour son sourire et sa joie de vivre a été pour moi un choc.
-          J’ai donc fondé KOUTY MÉDICAL SERVICE pour permettre à toutes les personnes, même dans les régions les plus reculées d’avoir accès aux soins qu’ils méritent.</p>
-          <p><strong>ISSOUF SAWADOGO</strong></p>
-        </div> -->
-
-        <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
+        <form id="contactForm" class="php-email-form" data-aos="fade-up" data-aos-delay="200" action="" onsubmit="sendEmail(event)" style=" padding: 30px; border-radius: 8px;">
           <div class="row gy-4">
-
             <div class="col-md-6">
-              <input type="text" name="name" class="form-control" placeholder="Your Name" required>
+              <input type="text" id="name" class="form-control" placeholder="Votre Nom" required style="border: 1px solid #ddd; border-radius: 4px; padding: 15px; font-size: 16px; margin-bottom: 15px;">
             </div>
 
             <div class="col-md-6">
-              <input type="email" class="form-control" name="email" placeholder="Your Email" required>
+              <input type="email" id="email" class="form-control" placeholder="Votre Email" required style="border: 1px solid #ddd; border-radius: 4px; padding: 15px; font-size: 16px; margin-bottom: 15px;">
             </div>
 
             <div class="col-md-12">
-              <input type="text" class="form-control" name="subject" placeholder="Subject" required>
+              <input type="text" id="subject" class="form-control" placeholder="Objet" required style="border: 1px solid #ddd; border-radius: 4px; padding: 15px; font-size: 16px; margin-bottom: 15px;">
             </div>
 
             <div class="col-md-12">
-              <textarea class="form-control" name="message" rows="6" placeholder="Message" required></textarea>
+              <textarea id="message" class="form-control" rows="6" placeholder="Message" required style="border: 1px solid #ddd; border-radius: 4px; padding: 15px; font-size: 16px; margin-bottom: 15px;"></textarea>
             </div>
 
             <div class="col-md-12 text-center">
-              <div class="loading">Loading</div>
-              <div class="error-message"></div>
-              <div class="sent-message">Your message has been sent. Thank you!</div>
+              <div class="loading" style="display: none;">Chargement</div>
+              <div class="error-message" style="display: none; color: #dc3545;"></div>
+              <div class="sent-message" style="display: none; color: #28a745;">Votre message a été envoyé. Merci!</div>
 
-              <button type="submit">Send Message</button>
+              <button type="submit" style="background: #007bff; border: none; padding: 15px 30px; color: #fff; font-size: 16px; border-radius: 4px; cursor: pointer;">Envoyer le message</button>
             </div>
-
           </div>
         </form>
+
       </div><!-- End Contact Form -->
 
     </div>
 
   </div>
 
-</section><!-- /Contact Section -->
+</section><!-- Contact Section -->
 
 
   </main>
@@ -409,7 +400,7 @@
       <div class="row gy-4">
         <div class="col-lg-4 col-md-6 footer-about">
           <a href="index.html" class="logo d-flex align-items-center">
-            <img src="{% static 'img/KOUTY.png' %}" alt="KOUTY Medical Service Logo" class="sitename">
+            <img src="{% static 'img/LOGO KOUTY 2.png' %}" alt="KOUTY Medical Service Logo" class="sitename">
             <span class="sitename">KOUTY Medical Service</span>
           </a>
           <div class="footer-contact pt-3">
@@ -419,10 +410,9 @@
             <p><strong>Email:</strong> <span>INFO@KOUTY.MA</span></p>
           </div>
           <div class="social-links d-flex mt-4">
-            <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-            <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-            <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-            <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+            <a href="https://www.facebook.com/profile.php?id=61555253916525&mibextid=LQQJ4d" class="facebook"><i class="bi bi-facebook"></i></a>
+            <a href="https://www.instagram.com/kouty_medical_service?igsh=Y3l6OHN3Z2FnZTdm" class="instagram"><i class="bi bi-instagram"></i></a>
+            <a href="https://www.linkedin.com/company/kouty-medical-service/" class="linkedin"><i class="bi bi-linkedin"></i></a>
           </div>
         </div>
 
@@ -461,10 +451,9 @@
         <div class="col-lg-2 col-md-3 footer-links">
           <h4>Suivez-nous</h4>
           <ul>
-            <li><a href="#" class="twitter">Twitter</a></li>
-            <li><a href="#" class="facebook">Facebook</a></li>
-            <li><a href="#" class="instagram">Instagram</a></li>
-            <li><a href="#" class="linkedin">LinkedIn</a></li>
+            <li><a href="https://www.facebook.com/profile.php?id=61555253916525&mibextid=LQQJ4d" class="facebook">Facebook</a></li>
+            <li><a href="https://www.instagram.com/kouty_medical_service?igsh=Y3l6OHN3Z2FnZTdm" class="instagram">Instagram</a></li>
+            <li><a href="https://www.linkedin.com/company/kouty-medical-service/" class="linkedin">LinkedIn</a></li>
           </ul>
         </div>
       </div>
@@ -493,7 +482,23 @@
     <!-- Main JS File -->
     <script src="{% static 'js/main.js' %}"></script>
 
+<script>
+function sendEmail(event) {
+  event.preventDefault();
 
+  const name = document.getElementById('name').value;
+  const email = document.getElementById('email').value;
+  const subject = document.getElementById('subject').value;
+  const message = document.getElementById('message').value;
+
+  const companyEmail = 'INFO@KOUTY.MA'; // Remplacez par l'email de votre entreprise
+  const fullMessage = `Je suis ${name} et mon mail est : ${email}.\n\n${message}`;
+
+  const mailtoLink = `mailto:${companyEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(fullMessage)}`;
+  
+  window.location.href = mailtoLink;
+}
+</script>
 </body>
 
 </html>
