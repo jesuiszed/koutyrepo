@@ -1,91 +1,7 @@
+{%extends  'base.html'%}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>KOUTY Medical service </title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
-
- <!-- Favicons -->
-<link href="{% static 'img/LOGO KOUTY 2.png' %}" rel="icon">
-<link href="{% static 'img/LOGO KOUTY 2.png' %}" rel="apple-touch-icon">
-
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com" rel="preconnect">
-  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-
-    <!-- Vendor CSS Files -->
-    <link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
-    <link rel="stylesheet" href="{% static 'vendor/bootstrap-icons/bootstrap-icons.css' %}">
-    <link rel="stylesheet" href="{% static 'vendor/aos/aos.css' %}">
-    <link rel="stylesheet" href="{% static 'vendor/fontawesome-free/css/all.min.css' %}">
-    <link rel="stylesheet" href="{% static 'vendor/glightbox/css/glightbox.min.css' %}">
-    <link rel="stylesheet" href="{% static 'vendor/swiper/swiper-bundle.min.css' %}">
-
-    <!-- Main CSS File -->
-    <link rel="stylesheet" href="{% static 'css/main.css' %}">
-
-
-  <!-- =======================================================
-  * Template Name: Medilab
-  * Template URL: https://bootstrapmade.com/medilab-free-medical-bootstrap-theme/
-  * Updated: Jun 29 2024 with Bootstrap v5.3.3
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
-</head>
-
-<body class="index-page">
-
-  <header id="header" class="header sticky-top">
-
-    <div class="topbar d-flex align-items-center">
-      <div class="container d-flex justify-content-center justify-content-md-between">
-        <div class="contact-info d-flex align-items-center">
-          <i class="bi bi-envelope d-flex align-items-center"><a href="mailto:INFO@KOUTY.MA">INFO@KOUTY.MA</a></i>
-          <i class="bi bi-phone d-flex align-items-center ms-4"><span>+212 (0) 674 04 50 01</span></i>
-        </div>
-        <div class="social-links d-none d-md-flex align-items-center">
-          <a href="https://www.facebook.com/profile.php?id=61555253916525&mibextid=LQQJ4d" class="facebook"><i class="bi bi-facebook"></i></a>
-          <a href="https://www.instagram.com/kouty_medical_service?igsh=Y3l6OHN3Z2FnZTdm" class="instagram"><i class="bi bi-instagram"></i></a>
-          <a href="https://www.linkedin.com/company/kouty-medical-service/" class="linkedin"><i class="bi bi-linkedin"></i></a>
-        </div>
-      </div>
-    </div><!-- End Top Bar -->
-
-    <div class="branding d-flex align-items-center">
-
-      <div class="container position-relative d-flex align-items-center justify-content-between">
-        <a href="index.html" class="logo d-flex align-items-center me-auto">
-          <!-- Uncomment the line below if you also wish to use an image logo -->
-          <img src="{% static 'img/LOGO KOUTY 2.png' %}" alt="" class="sitename">
-        </a>
-
-        <nav id="navmenu" class="navmenu">
-          <ul style="list-style: none">
-            <li><a href="#hero" class="active">Accueil<br></a></li>
-            <li><a href="#services">Nos Services</a></li>
-            <li><a href="#products">Nos Produits</a></li>
-            <li><a href="#departments">Nos partenaires</a></li>
-            <li><a href="#doctors">Nos Spécialistes</a></li>
-          </ul>
-          <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-        </nav>
-            <a class="cta-btn d-none d-sm-block" href="#contact">Nous contactez</a>
-
-          
-        
-
-      </div>
-
-    </div>
-
-  </header>
-    <!-- Hero Section -->
+{% block content %}
+ <!-- Hero Section -->
     <section id="hero" class="hero section light-background">
 
       <img src="{% static '/img/kouty_bg.jpg' %}" alt="" data-aos="fade-in">
@@ -314,6 +230,137 @@
 
 
     </section><!-- /Doctors Section -->
+    <!-- Testimonials Section -->
+<section id="testimonials" class="testimonials section">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-5 info" data-aos="fade-up" data-aos-delay="100">
+        <h3>Témoignages</h3>
+        <p>
+            Découvrez ce que nos clients et partenaires ont à dire sur leur expérience avec nous.
+            Leur satisfaction est notre plus grande récompense, et leurs retours témoignent de notre engagement envers l'excellence.
+        </p>
+      </div>
+      <div class="col-lg-7" data-aos="fade-up" data-aos-delay="200">
+        <div class="swiper init-swiper">
+          <script type="application/json" class="swiper-config">
+            {
+              "loop": true,
+              "speed": 600,
+              "autoplay": {
+                "delay": 5000
+              },
+              "slidesPerView": "auto",
+              "pagination": {
+                "el": ".swiper-pagination",
+                "type": "bullets",
+                "clickable": true
+              }
+            }
+          </script>
+          <div class="swiper-wrapper">
+            {% for temoin in temoins %}
+              <div class="swiper-slide">
+                <div class="testimonial-item">
+                  <div class="d-flex">
+                    {% if temoin.image %}
+                      <img src="{{ temoin.image.url }}" class="testimonial-img flex-shrink-0" alt="{{ temoin.nom }}">
+                    {% else %}
+                      <img src="{% static '/img/default_user.png' %}" class="testimonial-img flex-shrink-0" alt="Default Image">
+                    {% endif %}
+                    <div>
+                      <h3>{{ temoin.nom }}</h3>
+                      <h4>{{ temoin.role }}</h4>
+                    </div>
+                  </div>
+                  <p>
+                    <i class="bi bi-quote quote-icon-left"></i>
+                    <span>{{ temoin.temoignage }}</span>
+                    <i class="bi bi-quote quote-icon-right"></i>
+                  </p>
+                </div>
+              </div><!-- End testimonial item -->
+            {% endfor %}
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section><!-- /Testimonials Section -->
+<!-- Recent Posts Section -->
+<section id="recent-posts" class="recent-posts section">
+  <!-- Section Title -->
+  <div class="container section-title" data-aos="fade-up">
+    <h2>Nos Actualités</h2>
+    <p>Découvrez les dernières nouvelles et mises à jour importantes de notre entreprise.</p>
+  </div><!-- End Section Title -->
+
+  <div class="container">
+    <div class="row gy-4">
+      {% for mention in mentions %}
+        <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|add:100 }}">
+          <a href="{{ mention.lien }}" style="text-decoration: none; color: inherit; display: block; transition: transform 0.3s, box-shadow 0.3s;">
+            <article style="background: #fff; border: 1px solid #ddd; border-radius: 5px; overflow: hidden; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); transition: transform 0.3s, box-shadow 0.3s;">
+              <div class="post-img" style="overflow: hidden;">
+                {% if mention.image %}
+                  <img src="{{ mention.image.url }}" alt="Image de {{ mention.titre }}" style="width: 100%; height: 350px; object-fit: cover; transition: transform 0.3s;">
+                {% else %}
+                  <img src="{% static '/img/kouty.png' %}" alt="Image par défaut" style="width: 100%; height: 350px; object-fit: cover; transition: transform 0.3s;">
+                {% endif %}
+              </div>
+
+              <p class="post-category" style="font-size: 14px; color: #666; margin-left: 10px; margin-top: 10px;">{{ mention.source }}</p>
+
+              <h2 class="title" style="margin-left: 10px; color: rgba(10,63,227,0.65);">
+                {{ mention.titre }}
+              </h2>
+
+              <p class="post-excerpt" style="font-size: 16px; color: #333; margin-left: 10px; margin-right: 10px;">
+                {{ mention.extrait }}
+              </p>
+
+              <div class="d-flex align-items-center">
+                <!-- Optionally, you can add an author image if available -->
+                <!-- <img src="assets/img/blog/blog-author.jpg" alt="" class="img-fluid post-author-img flex-shrink-0"> -->
+                <div class="post-meta">
+                  <p class="post-date" style="font-size: 14px; color: #999; margin: 5px;">
+                    <time datetime="{{ mention.date_publication|date:"Y-m-d" }}">{{ mention.date_publication|date:"M d, Y" }}</time>
+                  </p>
+                </div>
+              </div>
+
+            </article>
+          </a>
+        </div><!-- End post list item -->
+      {% endfor %}
+    <!-- Bouton Voir Plus -->
+     <div style="text-align: center; margin: 20px 0;">
+      <a href="{% url 'koutyUsers:mention' %}" class="btn-see-more" style="display: inline-block; padding: 10px 20px; font-size: 16px; color: #fff; background-color: rgba(10,63,227,0.65); border-radius: 5px; text-decoration: none; transition: background-color 0.3s;">
+        Voir Plus d'Actualités >>>
+      </a>
+    </div>
+    </div><!-- End recent posts list -->
+  </div>
+</section><!-- /Recent Posts Section -->
+
+<style>
+  /* Effet de survol pour l'article */
+  .recent-posts a:hover article {
+    transform: scale(1.02);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Effet de survol pour l'image */
+  .recent-posts a:hover .post-img img {
+    transform: scale(1.05);
+  }
+  
+  /* Effet de survol pour le bouton Voir Plus */
+  .recent-posts a:hover div a {
+    background-color: rgba(10,63,227,0.85);
+  }
+</style>
 
     <!-- Contact Section -->
 <section id="contact" class="contact section">
@@ -391,99 +438,8 @@
   </div>
 
 </section><!-- Contact Section -->
-
-
-  </main>
-
-    <footer id="footer" class="footer light-background">
-    <div class="container footer-top">
-      <div class="row gy-4">
-        <div class="col-lg-4 col-md-6 footer-about">
-          <a href="index.html" class="logo d-flex align-items-center">
-            <img src="{% static 'img/LOGO KOUTY 2.png' %}" alt="KOUTY Medical Service Logo" class="sitename">
-            <span class="sitename">KOUTY Medical Service</span>
-          </a>
-          <div class="footer-contact pt-3">
-            <p>293 BD ABDELMOUMEN 5 ETG APPT 1</p>
-            <p>CASABLANCA-MAROC</p>
-            <p class="mt-3"><strong>Téléphone:</strong> <span>+212 (0) 674 04 50 01</span></p>
-            <p><strong>Email:</strong> <span>INFO@KOUTY.MA</span></p>
-          </div>
-          <div class="social-links d-flex mt-4">
-            <a href="https://www.facebook.com/profile.php?id=61555253916525&mibextid=LQQJ4d" class="facebook"><i class="bi bi-facebook"></i></a>
-            <a href="https://www.instagram.com/kouty_medical_service?igsh=Y3l6OHN3Z2FnZTdm" class="instagram"><i class="bi bi-instagram"></i></a>
-            <a href="https://www.linkedin.com/company/kouty-medical-service/" class="linkedin"><i class="bi bi-linkedin"></i></a>
-          </div>
-        </div>
-
-        <div class="col-lg-2 col-md-3 footer-links">
-          <h4>Liens Utiles</h4>
-          <ul>
-            <li><a href="#">Accueil</a></li>
-            <li><a href="#">À propos</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">Politique de confidentialité</a></li>
-            <li><a href="#">Conditions d'utilisation</a></li>
-          </ul>
-        </div>
-
-        <div class="col-lg-2 col-md-3 footer-links">
-          <h4>Nos Services</h4>
-          <ul>
-            <li><a href="#">Voyages Médicaux</a></li>
-            <li><a href="#">Hébergement Médical</a></li>
-            <li><a href="#">Transport</a></li>
-            <li><a href="#">Vente de Matériel Médical</a></li>
-          </ul>
-        </div>
-
-        <div class="col-lg-2 col-md-3 footer-links">
-          <h4>Liens Divers</h4>
-          <ul>
-            <li><a href="#">Blog</a></li>
-            <li><a href="#">Témoignages</a></li>
-            <li><a href="#">FAQ</a></li>
-            <li><a href="#">Contact</a></li>
-            <li><a href="#">Plan du site</a></li>
-          </ul>
-        </div>
-
-        <div class="col-lg-2 col-md-3 footer-links">
-          <h4>Suivez-nous</h4>
-          <ul>
-            <li><a href="https://www.facebook.com/profile.php?id=61555253916525&mibextid=LQQJ4d" class="facebook">Facebook</a></li>
-            <li><a href="https://www.instagram.com/kouty_medical_service?igsh=Y3l6OHN3Z2FnZTdm" class="instagram">Instagram</a></li>
-            <li><a href="https://www.linkedin.com/company/kouty-medical-service/" class="linkedin">LinkedIn</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <div class="container copyright text-center mt-4">
-      <p>&copy; 2024 <strong>KOUTY Medical Service</strong>. Tous droits réservés.</p>
-    </div>
-  </footer>
-
-
-  <!-- Scroll Top -->
-  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
-  <!-- Preloader -->
-  <div id="preloader"></div>
-
-      <!-- Vendor JS Files -->
-    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-    <script src="{% static 'vendor/php-email-form/validate.js' %}"></script>
-    <script src="{% static 'vendor/aos/aos.js' %}"></script>
-    <script src="{% static 'vendor/glightbox/js/glightbox.min.js' %}"></script>
-    <script src="{% static 'vendor/purecounter/purecounter_vanilla.js' %}"></script>
-    <script src="{% static 'vendor/swiper/swiper-bundle.min.js' %}"></script>
-
-    <!-- Main JS File -->
-    <script src="{% static 'js/main.js' %}"></script>
-
 <script>
-function sendEmail(event) {
+function sendEmail(event) { 
   event.preventDefault();
 
   const name = document.getElementById('name').value;
@@ -498,7 +454,5 @@ function sendEmail(event) {
   
   window.location.href = mailtoLink;
 }
-</script>
-</body>
-
-</html>
+</script>    
+{% endblock %}

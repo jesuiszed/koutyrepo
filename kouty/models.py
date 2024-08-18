@@ -33,3 +33,35 @@ class Specialiste(models.Model):
     image = models.ImageField(upload_to='Specialiste/', blank=True, null=True)
     def __str__(self):
         return self.nom
+
+
+class Mention(models.Model):
+    titre = models.CharField(max_length=200)
+    source = models.CharField(max_length=200)  # Le site ou la publication d'origine
+    lien = models.URLField(max_length=500, blank=True, null=True)  # Lien vers l'article
+    extrait = models.TextField()  # Un extrait pertinent de l'article
+    date_publication = models.DateField()
+    image = models.ImageField(upload_to='actualites/', blank=True, null=True)
+
+
+    def __str__(self):
+        return f"{self.titre} ({self.source})"
+
+
+class Role(models.TextChoices):
+    CLIENT = 'Client', 'Client'
+    EMPLOYE = 'Employé', 'Employé'
+    PARTENAIRE = 'Partenaire', 'Partenaire'
+    FOURNISSEUR = 'Fournisseur', 'Fournisseur'
+    AUTRE = 'Autre', 'Autre'
+
+
+class Temoin(models.Model):
+    nom = models.CharField(max_length=100)
+    role = models.CharField(max_length=100, choices=Role.choices, default=Role.AUTRE)
+    temoignage = models.TextField()
+    image = models.ImageField(upload_to='Temoignages/', blank=True, null=True)
+    date = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.nom} - {self.role}"
