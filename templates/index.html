@@ -155,7 +155,7 @@
           <div style="width: 100%; height: 200px; overflow: hidden; display: flex; align-items: center; justify-content: center;">
             <img src="{{ produit.image.url }}" alt="{{ produit.titre }} image" style="width: 100%; height: 100%; object-fit: cover;">
           </div>
-          <a href="#" class="stretched-link">
+          <a class="stretched-link">
             <h3>{{ produit.titre }}</h3>
           </a>
           <p>{{ produit.description }}</p>
@@ -163,6 +163,12 @@
       </div><!-- End Product Item -->
     {% endfor %}
   </div>
+      <!-- Bouton Voir Plus -->
+     <div style="text-align: center; margin: 20px 0;">
+      <a href="{% url 'koutyUsers:produit' %}" class="btn-see-more" style="display: inline-block; padding: 10px 20px; font-size: 16px; color: #fff; background-color: rgba(10,63,227,0.65); border-radius: 5px; text-decoration: none; transition: background-color 0.3s;">
+        Voir plus de produits >>>
+      </a>
+    </div>
 </div>
 
 
@@ -292,8 +298,9 @@
 <section id="recent-posts" class="recent-posts section">
   <!-- Section Title -->
   <div class="container section-title" data-aos="fade-up">
-    <h2>Nos Actualités</h2>
-    <p>Découvrez les dernières nouvelles et mises à jour importantes de notre entreprise.</p>
+    <h2>Ils parlent de nous...</h2>
+        <p>Explorez les articles et les reportages qui mettent en lumière les réalisations 
+            et l'impact de notre entreprise .</p>
   </div><!-- End Section Title -->
 
   <div class="container">
@@ -301,7 +308,7 @@
       {% for mention in mentions %}
         <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|add:100 }}">
           <a href="{{ mention.lien }}" style="text-decoration: none; color: inherit; display: block; transition: transform 0.3s, box-shadow 0.3s;">
-            <article style="background: #fff; border: 1px solid #ddd; border-radius: 5px; overflow: hidden; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); transition: transform 0.3s, box-shadow 0.3s;">
+            <article style="width: 100%; height: 600px;background: #fff; border: 1px solid #ddd; border-radius: 5px; overflow: hidden; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); transition: transform 0.3s, box-shadow 0.3s;">
               <div class="post-img" style="overflow: hidden;">
                 {% if mention.image %}
                   <img src="{{ mention.image.url }}" alt="Image de {{ mention.titre }}" style="width: 100%; height: 350px; object-fit: cover; transition: transform 0.3s;">
@@ -337,7 +344,7 @@
     <!-- Bouton Voir Plus -->
      <div style="text-align: center; margin: 20px 0;">
       <a href="{% url 'koutyUsers:mention' %}" class="btn-see-more" style="display: inline-block; padding: 10px 20px; font-size: 16px; color: #fff; background-color: rgba(10,63,227,0.65); border-radius: 5px; text-decoration: none; transition: background-color 0.3s;">
-        Voir Plus d'Actualités >>>
+        Voir plus d'Actualités >>>
       </a>
     </div>
     </div><!-- End recent posts list -->

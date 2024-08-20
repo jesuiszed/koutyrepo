@@ -1,0 +1,51 @@
+{% extends 'admin/index.html' %}
+
+{% block cp %}
+<div class="container">
+    <h1 class="my-4">Gestion des Mentions</h1>
+
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Ajouter une Mention</h2>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary mt-3" name="ajouter">Ajouter</button>
+            </form>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <h2>Liste des Mentions</h2>
+            <ul class="list-group">
+                {% for mention in mentions %}
+                <li class="list-group-item">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h5>{{ mention.titre }}</h5>
+                            <p>{{ mention.source }}</p>
+                            <a href="{{ mention.lien }}" target="_blank">{{ mention.lien }}</a>
+                        </div>
+                        <div>
+                            <form method="post" enctype="multipart/form-data" class="d-inline">
+                                {% csrf_token %}
+                                <input type="hidden" name="mention_id" value="{{ mention.id }}">
+                                <input type="text" class="form-control" name="nouveau_titre" value="{{ mention.titre }}">
+                                <input type="text" class="form-control mt-2" name="nouvelle_source" value="{{ mention.source }}">
+                                <input type="url" class="form-control mt-2" name="nouveau_lien" value="{{ mention.lien }}">
+                                <input type="file" class="mt-2" name="nouvelle_image">
+                                <button type="submit" class="btn btn-primary btn-sm mt-2" name="modifier">Modifier</button>
+                                <button type="submit" class="btn btn-danger btn-sm mt-2" name="supprimer">Supprimer</button>
+                            </form>
+                        </div>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

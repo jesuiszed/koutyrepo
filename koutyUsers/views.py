@@ -4,7 +4,7 @@ from kouty.models import *
 
 def index(request):
     service = Service.objects.all()
-    produit = Produit.objects.all()
+    produit = Produit.objects.all()[:3]
     partenaire = Partenaire.objects.all()
     specialiste = Specialiste.objects.all()
     temoins = Temoin.objects.all()
@@ -33,3 +33,12 @@ def mention(request):
     mentions = paginator.get_page(page_number)  # Obtient les mentions de la page demandée
 
     return render(request, 'specialistsPage.html', {'mentions': mentions})
+
+def produit(request):
+    produit_list = Produit.objects.all()  # Trie les mentions par date de publication, la plus récente en premier
+    paginator = Paginator(produit_list, 6)  # Nombre de mentions par page, ici 6
+
+    page_number = request.GET.get('page')  # Récupère le numéro de la page actuelle
+    produits = paginator.get_page(page_number)  # Obtient les mentions de la page demandée
+
+    return render(request, 'productPage.html', {'produits': produits})

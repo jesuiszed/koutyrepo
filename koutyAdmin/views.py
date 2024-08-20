@@ -1,14 +1,15 @@
+from pyexpat.errors import messages
+
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
+from django.contrib.auth.views import LogoutView
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponseRedirect
-from django.urls import reverse
-from kouty.models import Service, Produit, Partenaire, Specialiste
-from koutyAdmin.forms import ServiceForm, ProduitForm, PartenaireForm, SpecialisteForm
-
+from django.urls import reverse, reverse_lazy
+from kouty.models import *
+from koutyAdmin.forms import *
 def index(request):
     return render(request, 'admin/index.html')
-
 def login_view(request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -120,3 +121,66 @@ def gestion_specialistes(request):
 
     context = {'specialistes': specialistes, 'form': form}
     return render(request, 'admin/gest_specialistes.html', context)
+
+@login_required(login_url='admin_login')
+def gestion_mentions(request):
+    mentions = Mention.objects.all()
+    form = MentionForm()
+
+    if request.method == 'POST':
+        if 'modifier' in request.POST:
+            mention_id = request.POST.get('mention_id')
+            mention = get_object_or_404(Mention, pk=mention_id)
+            form = MentionForm(request.POST, request.FILES, instance=mention)
+            if form.is_valid():
+                form.save()
+                messages.success(request, 'Mention modifiée avec succès.')
+                return redirect('gestion_mentions')
+        elif 'supprimer' in request.POST:
+            mention_id = request.POST.get('mention_id')
+            mention = get_object_or_404(Mention, pk=mention_id)
+            mention.delete()
+            messages.success(request, 'Mention supprimée avec succès.')
+            return redirect('gestion_mentions')
+        elif 'ajouter' in request.POST:
+            form = MentionForm(request.POST, request.FILES)
+            if form.is_valid():
+                form.save()
+                messages.success(request, 'Mention ajoutée avec succès.')
+                return redirect('gestion_mentions')
+
+    context = {'mentions': mentions, 'form': form}
+    return render(request, 'admin/gest_mention.html', context)
+
+@login_required(login_url='admin_login')
+def gestion_temoin(request):
+    temoins = Temoin.objects.all()
+    form = TemoinForm()
+
+    if request.method == 'POST':
+        if 'modifier' in request.POST:
+            temoin_id = request.POST.get('temoin_id')
+            temoin = get_object_or_404(Temoin, pk=temoin_id)
+            form = TemoinForm(request.POST, request.FILES, instance=temoin)
+            if form.is_valid():
+                form.save()
+                messages.success(request, 'Témoin modifié avec succès.')
+                return redirect('gestion_temoin')
+        elif 'supprimer' in request.POST:
+            temoin_id = request.POST.get('temoin_id')
+            temoin = get_object_or_404(Temoin, pk=temoin_id)
+            temoin.delete()
+            messages.success(request, 'Témoin supprimé avec succès.')
+            return redirect('gestion_temoin')
+        elif 'ajouter' in request.POST:
+            form = TemoinForm(request.POST, request.FILES)
+            if form.is_valid():
+                form.save()
+                messages.success(request, 'Témoin ajouté avec succès.')
+                return redirect('gestion_temoin')
+
+    context = {'temoins': temoins, 'form': form}
+    return render(request, 'admin/gest_temoin.html', context)
+
+class CustomLogoutView(LogoutView):
+    next_page = reverse_lazy('admin_login')
