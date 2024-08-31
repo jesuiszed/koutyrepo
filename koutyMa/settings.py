@@ -15,7 +15,6 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
@@ -23,10 +22,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-wj!-7^7iv8&7@20%!z@$(!$g%61a1rg32bvkvxh^gk!fj^d2#p'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = ['192.168.11.105','localhost','noble-simply-sturgeon.ngrok-free.app','192.168.167.86','aa8d-196-127-0-84.ngrok-free.app']
-
+DEBUG=False
+ALLOWED_HOSTS = ['kouty.ma', 'localhost', 'noble-simply-sturgeon.ngrok-free.app', '192.168.167.86']
 
 # Application definition
 
@@ -73,7 +70,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'koutyMa.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
@@ -85,7 +81,7 @@ DATABASES = {
 }
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://aa8d-196-127-0-84.ngrok-free.app',
+    'https://aa8d-196-127-0-84.ngrok-free.app','https://noble-simply-sturgeon.ngrok-free.app'
 ]
 
 # Password validation
@@ -106,7 +102,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
@@ -118,7 +113,6 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
@@ -126,9 +120,11 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-MEDIA_URL = '/Service/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'Service')
+MEDIA_URL = 'media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+

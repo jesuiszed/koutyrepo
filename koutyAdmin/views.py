@@ -1,5 +1,7 @@
 from pyexpat.errors import messages
-
+from django.utils import timezone
+from django.db.models import Count
+from django.db.models.functions import TruncMonth, TruncYear
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LogoutView
 from django.shortcuts import render, redirect, get_object_or_404
@@ -9,7 +11,9 @@ from django.urls import reverse, reverse_lazy
 from kouty.models import *
 from koutyAdmin.forms import *
 def index(request):
-    return render(request, 'admin/index.html')
+    return render(request, 'admin/visitor_stats.html')
+def index1(request):
+    return render(request, 'registration/password_reset_email.html')
 def login_view(request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -184,3 +188,33 @@ def gestion_temoin(request):
 
 class CustomLogoutView(LogoutView):
     next_page = reverse_lazy('admin_login')
+
+
+def visitor_stats(request):
+    today = timezone.now().date()
+
+    # Statistiques journalières
+    today_count = VisitorCount.objects.filter(date=today).first()
+    total_count = sum(VisitorCount.objects.values_list('count', flat=True))
+
+    # Statistiques par pays et ville
+    country_stats = Visitor.objects.values('country').annotate(count=Count('id')).order_by('-count')
+    city_stats = Visitor.objects.values('city').annotate(count=Count('id')).order_by('-count')
+
+    # Statistiques mensuelles
+    monthly_stats = Visitor.objects.annotate(month=TruncMonth('timestamp')).values('month').annotate(
+        count=Count('id')).order_by('-month')
+
+    # Statistiques annuelles
+    yearly_stats = Visitor.objects.annotate(year=TruncYear('timestamp')).values('year').annotate(
+        count=Count('id')).order_by('-year')
+
+    context = {
+        'today_count': today_count.count if today_count else 0,
+        'total_count': total_count,
+        'country_stats': country_stats[:10],  # Top 10 countries
+        'city_stats': city_stats[:10],  # Top 10 cities
+        'monthly_stats': monthly_stats[:12],  # Last 12 months
+        'yearly_stats': yearly_stats,
+    }
+    return render(request, 'admin/visitor_stats.html', context)

@@ -1,4 +1,5 @@
 from django.core.paginator import Paginator
+from django.http import HttpResponse
 from django.shortcuts import render
 from kouty.models import *
 
@@ -32,7 +33,7 @@ def mention(request):
     page_number = request.GET.get('page')  # Récupère le numéro de la page actuelle
     mentions = paginator.get_page(page_number)  # Obtient les mentions de la page demandée
 
-    return render(request, 'specialistsPage.html', {'mentions': mentions})
+    return render(request, 'newsPage.html', {'mentions': mentions})
 
 def produit(request):
     produit_list = Produit.objects.all()  # Trie les mentions par date de publication, la plus récente en premier
@@ -42,3 +43,12 @@ def produit(request):
     produits = paginator.get_page(page_number)  # Obtient les mentions de la page demandée
 
     return render(request, 'productPage.html', {'produits': produits})
+
+def specialiste(request):
+    specialiste_list = Specialiste.objects.all()  # Récupère tous les spécialistes
+    paginator = Paginator(specialiste_list, 6)  # Nombre de spécialistes par page, ici 6
+
+    page_number = request.GET.get('page')  # Récupère le numéro de la page actuelle
+    specialistes = paginator.get_page(page_number)  # Obtient les spécialistes de la page demandée
+
+    return render(request, 'specialistsPage.html', {'specialistes': specialistes})

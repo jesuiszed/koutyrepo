@@ -1,0 +1,298 @@
+{% extends 'admin/index.html' %}
+{% load static %}
+{% block cp %}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        h2 {
+            color: #333;
+            margin-top: 20px;
+        }
+
+        .container {
+            width: 90%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .chart-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .chart-container {
+            flex: 1;
+            margin: 0 10px;
+            min-width: 0;
+        }
+
+        canvas {
+            width: 100% !important;
+            height: 400px;
+        }
+    </style>
+<body>
+    <div class="container">
+        <h1>Statistiques des Visiteurs</h1>
+
+        <div class="chart-row">
+            <div class="chart-container">
+                <h2>Visiteurs Quotidiens</h2>
+                <canvas id="dailyVisitorsChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <h2>Visiteurs Totaux</h2>
+                <canvas id="totalVisitorsChart"></canvas>
+            </div>
+        </div>
+
+        <div class="chart-row">
+            <div class="chart-container">
+                <h2>Top 10 Pays</h2>
+                <canvas id="countryStatsChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <h2>Top 10 Villes</h2>
+                <canvas id="cityStatsChart"></canvas>
+            </div>
+        </div>
+
+        <div class="chart-row">
+            <div class="chart-container">
+                <h2>Visiteurs Mensuels</h2>
+                <canvas id="monthlyStatsChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <h2>Visiteurs Annuels</h2>
+                <canvas id="yearlyStatsChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Configuration des graphiques...
+
+        const dailyVisitorsCtx = document.getElementById('dailyVisitorsChart').getContext('2d');
+        new Chart(dailyVisitorsCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Aujourd\'hui'],
+                datasets: [{
+                    label: 'Visiteurs Aujourd\'hui',
+                    data: [{{ today_count|default:0 }}],
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Visiteurs Quotidiens'
+                    },
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Nombre de Visiteurs'
+                        }
+                    }
+                }
+            }
+        });
+
+        const totalVisitorsCtx = document.getElementById('totalVisitorsChart').getContext('2d');
+        new Chart(totalVisitorsCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Visiteurs Totaux'],
+                datasets: [{
+                    label: 'Visiteurs Totaux',
+                    data: [{{ total_count|default:0 }}],
+                    backgroundColor: ['rgba(153, 102, 255, 0.2)'],
+                    borderColor: ['rgba(153, 102, 255, 1)'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Visiteurs Totaux'
+                    },
+                    legend: {
+                        position: 'top'
+                    }
+                }
+            }
+        });
+
+        const countryStatsCtx = document.getElementById('countryStatsChart').getContext('2d');
+        new Chart(countryStatsCtx, {
+            type: 'bar',
+            data: {
+                labels: [{% for country in country_stats %}'{{ country.country }}'{% if not forloop.last %}, {% endif %}{% endfor %}],
+                datasets: [{
+                    label: 'Visiteurs par Pays',
+                    data: [{% for country in country_stats %}{{ country.count }}{% if not forloop.last %}, {% endif %}{% endfor %}],
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Visiteurs par Pays'
+                    },
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Nombre de Visiteurs'
+                        }
+                    }
+                }
+            }
+        });
+
+        const cityStatsCtx = document.getElementById('cityStatsChart').getContext('2d');
+        new Chart(cityStatsCtx, {
+            type: 'bar',
+            data: {
+                labels: [{% for city in city_stats %}'{{ city.city }}'{% if not forloop.last %}, {% endif %}{% endfor %}],
+                datasets: [{
+                    label: 'Visiteurs par Ville',
+                    data: [{% for city in city_stats %}{{ city.count }}{% if not forloop.last %}, {% endif %}{% endfor %}],
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Visiteurs par Ville'
+                    },
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Nombre de Visiteurs'
+                        }
+                    }
+                }
+            }
+        });
+
+        const monthlyStatsCtx = document.getElementById('monthlyStatsChart').getContext('2d');
+        new Chart(monthlyStatsCtx, {
+            type: 'line',
+            data: {
+                labels: [{% for month in monthly_stats %}'{{ month.month|date:"F Y" }}'{% if not forloop.last %}, {% endif %}{% endfor %}],
+                datasets: [{
+                    label: 'Visiteurs Mensuels',
+                    data: [{% for month in monthly_stats %}{{ month.count }}{% if not forloop.last %}, {% endif %}{% endfor %}],
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Visiteurs Mensuels'
+                    },
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Nombre de Visiteurs'
+                        }
+                    }
+                }
+            }
+        });
+
+        const yearlyStatsCtx = document.getElementById('yearlyStatsChart').getContext('2d');
+        new Chart(yearlyStatsCtx, {
+            type: 'line',
+            data: {
+                labels: [{% for year in yearly_stats %}'{{ year.year }}'{% if not forloop.last %}, {% endif %}{% endfor %}],
+                datasets: [{
+                    label: 'Visiteurs Annuels',
+                    data: [{% for year in yearly_stats %}{{ year.count }}{% if not forloop.last %}, {% endif %}{% endfor %}],
+                    backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                    borderColor: 'rgba(153, 102, 255, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Visiteurs Annuels'
+                    },
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Nombre de Visiteurs'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+{% endblock %}

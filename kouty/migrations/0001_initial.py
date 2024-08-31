@@ -29,12 +29,12 @@ class Migration(migrations.Migration):
             ],
         ),
         migrations.CreateModel(
-            name='Service',
+            name='media',
             fields=[
                 ('id', models.AutoField(primary_key=True, serialize=False)),
                 ('titre', models.CharField(max_length=100)),
                 ('description', models.TextField()),
-                ('image', models.ImageField(blank=True, null=True, upload_to='Service/')),
+                ('image', models.ImageField(blank=True, null=True, upload_to='media/')),
             ],
         ),
         migrations.CreateModel(

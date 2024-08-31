@@ -118,18 +118,18 @@
         <p>Nous vous proposons divers services.</p>
       </div><!-- End Section Title -->
 
-      <div class="container">
-  <div class="row gy-4">
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+  <div class="row ">
     {% for service in service %}
-      <div class="col-lg-4 col-md-6" data-aos="fade-up">
-        <div class="service-item position-relative">
-          <div style="width: 100%; height: 300px; overflow: hidden; display: flex; align-items: center; justify-content: center;">
-            <img src="{{ service.image.url }}" alt="{{ service.titre }} image" style="width: 100%; height: 100%; object-fit: cover;">
+      <div class="col-md-3 mb-4">
+        <div class="card partner-card">
+          <div style="width: 100%; height: 200px; overflow: hidden;">
+            <img src="{{ service.image.url }}" class="card-img-top" alt="{{ service.titre }} image" style="width: 100%; height: 100%; object-fit: cover;">
           </div>
-          <a  class="stretched-link">
-            <h3>{{ service.titre }}</h3>
-          </a>
-          <p>{{ service.description }}</p>
+           <div class="card-body">
+            <h5 class="card-title partner-card-title" style="width: 100%; height: 40px;">{{ service.titre }}</h5>
+            <p class="card-text" style="width: 100%; height: 200px;">{{ service.description }}</p>
+          </div>
         </div>
       </div><!-- End Service Item -->
     {% endfor %}
@@ -147,35 +147,32 @@
         <p>Découvrez notre gamme de produits de qualité.</p>
       </div><!-- End Section Title -->
 
-      <div class="container">
-  <div class="row gy-4">
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+  <div class="row">
     {% for produit in produit %}
-      <div class="col-lg-4 col-md-6" data-aos="fade-up">
-        <div class="service-item position-relative">
-          <div style="width: 100%; height: 200px; overflow: hidden; display: flex; align-items: center; justify-content: center;">
-            <img src="{{ produit.image.url }}" alt="{{ produit.titre }} image" style="width: 100%; height: 100%; object-fit: cover;">
+      <div class="col-md-3 mb-4">
+        <div class="card partner-card">
+          <div style="width: 100%; height: 200px; overflow: hidden;">
+            <img src="{{ produit.image.url }}" class="card-img-top" alt="{{ produit.titre }} image" style="width: 100%; height: 100%; object-fit: cover;">
           </div>
-          <a class="stretched-link">
-            <h3>{{ produit.titre }}</h3>
-          </a>
-          <p>{{ produit.description }}</p>
-        </div>
+           <div class="card-body">
+            <h5 class="card-title partner-card-title" style="width: 100%; height: 40px;">{{ produit.titre }}</h5>
+            <p class="card-text" style="width: 100%; height: 100px;">{{ produit.description }}</p>
+          </div>
+          </div>
       </div><!-- End Product Item -->
     {% endfor %}
   </div>
       <!-- Bouton Voir Plus -->
      <div style="text-align: center; margin: 20px 0;">
-      <a href="{% url 'koutyUsers:produit' %}" class="btn-see-more" style="display: inline-block; padding: 10px 20px; font-size: 16px; color: #fff; background-color: rgba(10,63,227,0.65); border-radius: 5px; text-decoration: none; transition: background-color 0.3s;">
+      <a href="{% url 'koutyUsers:produit' %}" class="btn-see-more" style="display: inline-block; padding: 10px 20px; font-size: 16px; color: #fff; background: #007bff; border-radius: 5px; text-decoration: none; transition: background-color 0.3s;">
         Voir plus de produits >>>
       </a>
     </div>
 </div>
-
-
+    
     </section><!-- /Products Section -->
-
-
-
+    
     <!-- Departments Section -->
     <section id="departments" class="departments section">
 
@@ -188,14 +185,14 @@
       <div class="container" data-aos="fade-up" data-aos-delay="100">
   <div class="row">
     {% for partenaire in partenaire %}
-      <div class="col-md-4">
-        <div class="card partner-card">
+      <div class="col-md-3 mb-4" >
+        <div class="card partner-card" >
           <div style="width: 100%; height: 200px; overflow: hidden;">
             <img src="{{ partenaire.image.url }}" class="card-img-top" alt="{{ partenaire.nom }} image" style="width: 100%; height: 100%; object-fit: cover;">
           </div>
           <div class="card-body">
-            <h5 class="card-title partner-card-title">{{ partenaire.nom }}</h5>
-            <p class="card-text">{{ partenaire.description }}</p>
+            <h5 class="card-title partner-card-title" style="width: 100%; height: 40px;">{{ partenaire.nom }}</h5>
+            <p class="card-text" style="width: 100%; height: 100px;">{{ partenaire.description }}</p>
           </div>
         </div>
       </div>
@@ -218,7 +215,7 @@
       <div class="container">
   <div class="row gy-4">
     {% for specialiste in specialiste %}
-      <div class="col-lg-4 col-md-6" data-aos="fade-up">
+      <div class="col-md-4 mb-4">
         <div class="team-member d-flex align-items-start">
           <div class="pic" style="width: 150px; height: 150px; overflow: hidden; border-radius: 50%;">
             <img src="{{ specialiste.image.url }}" class="img-fluid" alt="{{ specialiste.nom }}" style="width: 100%; height: 100%; object-fit: cover;">
@@ -231,6 +228,12 @@
         </div>
       </div><!-- End Team Member -->
     {% endfor %}
+  <!-- Bouton Voir Plus -->
+     <div style="text-align: center; margin: 20px 0;color: #fff;">
+      <a href="{% url 'koutyUsers:specialiste' %}" class="btn-see-more" style="display: inline-block; padding: 10px 20px; font-size: 16px; color: #fff; background: #007bff; border-radius: 5px; text-decoration: none; transition: background-color 0.3s;">
+        Voir plus de spécialiste >>>
+      </a>
+    </div>
   </div>
 </div>
 
@@ -342,8 +345,8 @@
         </div><!-- End post list item -->
       {% endfor %}
     <!-- Bouton Voir Plus -->
-     <div style="text-align: center; margin: 20px 0;">
-      <a href="{% url 'koutyUsers:mention' %}" class="btn-see-more" style="display: inline-block; padding: 10px 20px; font-size: 16px; color: #fff; background-color: rgba(10,63,227,0.65); border-radius: 5px; text-decoration: none; transition: background-color 0.3s;">
+     <div style="text-align: center; margin: 20px 0;color: #fff;">
+      <a href="{% url 'koutyUsers:mention' %}" class="btn-see-more" style="display: inline-block; padding: 10px 20px; font-size: 16px; color: #fff; background: #007bff; border-radius: 5px; text-decoration: none; transition: background-color 0.3s;">
         Voir plus d'Actualités >>>
       </a>
     </div>
@@ -410,7 +413,7 @@
       </div>
 
       <div class="col-lg-8">
-        <form id="contactForm" class="php-email-form" data-aos="fade-up" data-aos-delay="200" action="" onsubmit="sendEmail(event)" style=" padding: 30px; border-radius: 8px;">
+        <form id="contactForm" class="php-email-form" data-aos="fade-up" data-aos-delay="200" action="#" onsubmit="sendEmail(event)" style=" padding: 30px; border-radius: 8px;">
           <div class="row gy-4">
             <div class="col-md-6">
               <input type="text" id="name" class="form-control" placeholder="Votre Nom" required style="border: 1px solid #ddd; border-radius: 4px; padding: 15px; font-size: 16px; margin-bottom: 15px;">

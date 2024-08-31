@@ -10,8 +10,6 @@ urlpatterns = [
     path('base/', views.base, name='base'),
     path('mention/', views.mention, name='mention'),
     path('produit/', views.produit, name='produit'),
+    path('specialiste/', views.specialiste, name='specialiste'),
 
 ]
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL,
-                          document_root=settings.MEDIA_ROOT)
