@@ -1,101 +1,93 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-    <style>
-  /* Effet de survol pour l'article */
-  .recent-posts a:hover article {
-    transform: scale(1.02);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-  }
 
-  /* Effet de survol pour l'image */
-  .recent-posts a:hover .post-img img {
-    transform: scale(1.05);
+<style>
+  .card-img-top {
+    height: 200px;
+    object-fit: cover;
+    width: 100%;
   }
-
-  /* Effet de survol pour le bouton Voir Plus */
-  .recent-posts a:hover div a {
-    background-color: rgba(10,63,227,0.85);
+  .card {
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+  }
+  .card-title {
+    font-size: 1.1rem;
+    line-height: 1.3;
+  }
+  .card-text {
+    font-size: 0.9rem;
+  }
+  .text-muted {
+    font-size: 0.8rem;
   }
 </style>
 
 <!-- Recent Posts Section -->
-<section id="recent-posts" class="recent-posts section">
+<section id="recent-posts" class="recent-posts py-5">
   <!-- Section Title -->
-  <div class="container section-title" data-aos="fade-up">
-    <h2>Nos Actualités</h2>
-    <p>Découvrez les dernières nouvelles et mises à jour importantes de notre entreprise.</p>
-  </div><!-- End Section Title -->
+  <div class="container mb-5" data-aos="fade-up">
+    <h2 class="text-center mb-3">Nos Actualités</h2>
+    <p class="text-center text-muted">Découvrez les dernières nouvelles et mises à jour importantes de notre entreprise.</p>
+  </div>
 
   <div class="container">
-    <div class="row gy-4">
+    <div class="row g-4">
       {% for mention in mentions %}
-        <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|add:100 }}">
-          <a href="{{ mention.lien }}" style="text-decoration: none; color: inherit; display: block; transition: transform 0.3s, box-shadow 0.3s;">
-            <article style="background: #fff; border: 1px solid #ddd; border-radius: 5px; overflow: hidden; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); transition: transform 0.3s, box-shadow 0.3s;">
-              <div class="post-img" style="overflow: hidden;">
-                {% if mention.image %}
-                  <img src="{{ mention.image.url }}" alt="Image de {{ mention.titre }}" style="width: 100%; height: 350px; object-fit: cover; transition: transform 0.3s;">
-                {% else %}
-                  <img src="{% static '/img/kouty.png' %}" alt="Image par défaut" style="width: 100%; height: 350px; object-fit: cover; transition: transform 0.3s;">
-                {% endif %}
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|add:100 }}">
+          <div class="card h-100 shadow-sm">
+            {% if mention.image %}
+              <img src="{{ mention.image.url }}" alt="Image de {{ mention.titre }}" class="card-img-top">
+            {% else %}
+              <img src="{% static '/img/kouty.png' %}" alt="Image par défaut" class="card-img-top">
+            {% endif %}
+            <div class="card-body d-flex flex-column">
+              <p class="card-text text-muted small mb-2">{{ mention.source }}</p>
+              <h5 class="card-title text-primary">{{ mention.titre }}</h5>
+              <p class="card-text small flex-grow-1">{{ mention.extrait }}</p>
+              <div class="d-flex justify-content-between align-items-center mt-3">
+                <small class="text-muted">
+                  <time datetime="{{ mention.date_publication|date:'Y-m-d' }}">{{ mention.date_publication|date:'M d, Y' }}</time>
+                </small>
+                <a href="{{ mention.lien }}" class="btn btn-outline-primary btn-sm">Lire plus</a>
               </div>
-
-              <p class="post-category" style="font-size: 14px; color: #666; margin-left: 10px; margin-top: 10px;">{{ mention.source }}</p>
-
-              <h2 class="title" style="margin-left: 10px;color: rgba(10,63,227,0.65);">
-                {{ mention.titre }}
-              </h2>
-
-              <p class="post-excerpt" style="font-size: 16px; color: #333; margin-left: 10px; margin-right: 10px;">
-                {{ mention.extrait }}
-              </p>
-
-              <div class="d-flex align-items-center">
-                <div class="post-meta">
-                  <p class="post-date" style="font-size: 14px; color: #999; margin: 5px;">
-                    <time datetime="{{ mention.date_publication|date:'Y-m-d' }}">{{ mention.date_publication|date:'M d, Y' }}</time>
-                  </p>
-                </div>
-              </div>
-            </article>
-          </a>
-        </div><!-- End post list item -->
+            </div>
+          </div>
+        </div>
       {% endfor %}
-    </div><!-- End recent posts list -->
+    </div>
 
     <!-- Pagination Controls -->
-    <div class="pagination" style="text-align: center; margin: 20px 0;">
-      <ul class="pagination-list" style="display: inline-block; padding-left: 0; list-style: none;">
+    <nav aria-label="Page navigation" class="mt-5">
+      <ul class="pagination justify-content-center">
         {% if mentions.has_previous %}
-          <li style="display: inline;">
-            <a href="?page={{ mentions.previous_page_number }}" style="padding: 10px 15px; text-decoration: none; background-color: #f1f1f1; border: 1px solid #ddd; color: #333; border-radius: 5px;">&laquo; Précédent</a>
+          <li class="page-item">
+            <a class="page-link" href="?page={{ mentions.previous_page_number }}">&laquo; Précédent</a>
           </li>
         {% endif %}
         {% for page_num in mentions.paginator.page_range %}
-          {% if mentions.number == page_num %}
-            <li style="display: inline;">
-              <span style="padding: 10px 15px; text-decoration: none; background-color: #007bff; border: 1px solid #007bff; color: #fff; border-radius: 5px;">{{ page_num }}</span>
-            </li>
-          {% else %}
-            <li style="display: inline;">
-              <a href="?page={{ page_num }}" style="padding: 10px 15px; text-decoration: none; background-color: #f1f1f1; border: 1px solid #ddd; color: #333; border-radius: 5px;">{{ page_num }}</a>
-            </li>
-          {% endif %}
+          <li class="page-item {% if mentions.number == page_num %}active{% endif %}">
+            <a class="page-link" href="?page={{ page_num }}">{{ page_num }}</a>
+          </li>
         {% endfor %}
         {% if mentions.has_next %}
-          <li style="display: inline;">
-            <a href="?page={{ mentions.next_page_number }}" style="padding: 10px 15px; text-decoration: none; background-color: #f1f1f1; border: 1px solid #ddd; color: #333; border-radius: 5px;">Suivant &raquo;</a>
+          <li class="page-item">
+            <a class="page-link" href="?page={{ mentions.next_page_number }}">Suivant &raquo;</a>
           </li>
         {% endif %}
       </ul>
-    </div>
+    </nav>
 
-    <div style="text-align: center; margin: 20px 0;">
-      <a href="{% url 'koutyUsers:index' %}" class="btn-see-more" style="display: inline-block; padding: 10px 20px; font-size: 16px; color: #fff; background: #007bff; border-radius: 5px; text-decoration: none; transition: background-color 0.3s;">
+    <div class="text-center mt-5">
+      <a href="{% url 'koutyUsers:index' %}" class="btn btn-primary">
         <<< Retour à l'accueil
       </a>
     </div>
   </div>
-</section><!-- /Recent Posts Section -->
+</section>
+
 {% endblock %}

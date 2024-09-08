@@ -1,10 +1,28 @@
 {%extends  'base.html'%}
 {% load static %}
 {% block content %}
+    
+    <style>
+  /* Effet de survol pour l'article */
+  .recent-posts a:hover article {
+    transform: translateY(-5px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  }
+
+  /* Effet de survol pour l'image */
+  .recent-posts a:hover .post-img img {
+    transform: scale(1.05);
+  }
+
+  /* Effet de survol pour le bouton Voir Plus */
+  .recent-posts a:hover .btn-primary {
+    background-color: rgba(10,63,227,0.85);
+  }
+</style>
  <!-- Hero Section -->
     <section id="hero" class="hero section light-background">
 
-      <img src="{% static '/img/kouty_bg.jpg' %}" alt="" data-aos="fade-in">
+      <img src="{% static '/img/fbg.jpg' %}" alt="" data-aos="fade-in">
 
       <div class="container position-relative">
 
@@ -109,99 +127,161 @@
 
     </section><!-- /About Section -->
 
-        <!-- Services Section -->
-    <section id="services" class="services section">
+<!-- Services Section -->
+<section id="services" class="services section py-5">
 
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Services</h2>
-        <p>Nous vous proposons divers services.</p>
-      </div><!-- End Section Title -->
+  <!-- Section Title -->
+  <div class="container section-title text-center mb-4" data-aos="fade-up">
+    <h2>Services</h2>
+    <p>Nous vous proposons divers services.</p>
+  </div><!-- End Section Title -->
 
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-  <div class="row ">
-    {% for service in service %}
-      <div class="col-md-3 mb-4">
-        <div class="card partner-card">
-          <div style="width: 100%; height: 200px; overflow: hidden;">
-            <img src="{{ service.image.url }}" class="card-img-top" alt="{{ service.titre }} image" style="width: 100%; height: 100%; object-fit: cover;">
+  <div class="container">
+    <div class="row gy-4">
+      {% for service in service %}
+        <div class="col-lg-4 col-md-6" data-aos="fade-up">
+          <div class="card border-0 rounded-3 shadow-sm">
+            <div class="position-relative overflow-hidden" style="height: 300px;">
+              <img src="{{ service.image.url }}" alt="{{ service.titre }} image" class="card-img-top w-100 h-100 object-fit-cover">
+            </div>
+            <div class="card-body">
+              <h3 class="card-title mb-3" style="color: rgba(10,63,227,0.85);">{{ service.titre }}</h3>
+              <p class="card-text">{{ service.description }}</p>
+            </div>
           </div>
-           <div class="card-body">
-            <h5 class="card-title partner-card-title" style="width: 100%; height: 40px;">{{ service.titre }}</h5>
-            <p class="card-text" style="width: 100%; height: 200px;">{{ service.description }}</p>
-          </div>
-        </div>
-      </div><!-- End Service Item -->
-    {% endfor %}
+        </div><!-- End Service Item -->
+      {% endfor %}
+    </div>
   </div>
-</div>
 
+</section><!-- /Services Section -->
 
-    </section><!-- /Services Section -->
+<!-- Styles Bootstrap Only -->
+<style>
+  .object-fit-cover {
+    object-fit: cover;
+  }
+  .card-img-top {
+    object-fit: cover;
+  }
+</style>
+
     <!-- Products Section -->
-    <section id="products" class="services section">
+<section id="products" class="services section">
 
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Nos Produits</h2>
-        <p>Découvrez notre gamme de produits de qualité.</p>
-      </div><!-- End Section Title -->
+  <!-- Section Title -->
+  <div class="container section-title" data-aos="fade-up">
+    <h2>Nos Produits</h2>
+    <p>Découvrez notre gamme de produits de qualité.</p>
+  </div><!-- End Section Title -->
 
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-  <div class="row">
-    {% for produit in produit %}
-      <div class="col-md-3 mb-4">
-        <div class="card partner-card">
-          <div style="width: 100%; height: 200px; overflow: hidden;">
-            <img src="{{ produit.image.url }}" class="card-img-top" alt="{{ produit.titre }} image" style="width: 100%; height: 100%; object-fit: cover;">
+  <div class="container">
+    <div class="row gy-4">
+      {% for produit in produit %}
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|add:100 }}">
+          <div class="card product-card">
+            <div class="product-img">
+              {% if produit.image %}
+                <img src="{{ produit.image.url }}" alt="{{ produit.titre }} image">
+              {% else %}
+                <img src="{% static '/img/kouty.png' %}" alt="Image par défaut">
+              {% endif %}
+            </div>
+            <div class="card-body product-content">
+              <h2 class="product-title">{{ produit.titre }}</h2>
+              <p class="product-description">{{ produit.description }}</p>
+            </div>
           </div>
-           <div class="card-body">
-            <h5 class="card-title partner-card-title" style="width: 100%; height: 40px;">{{ produit.titre }}</h5>
-            <p class="card-text" style="width: 100%; height: 100px;">{{ produit.description }}</p>
-          </div>
-          </div>
-      </div><!-- End Product Item -->
-    {% endfor %}
-  </div>
-      <!-- Bouton Voir Plus -->
-     <div style="text-align: center; margin: 20px 0;">
-      <a href="{% url 'koutyUsers:produit' %}" class="btn-see-more" style="display: inline-block; padding: 10px 20px; font-size: 16px; color: #fff; background: #007bff; border-radius: 5px; text-decoration: none; transition: background-color 0.3s;">
+        </div><!-- End Product Item -->
+      {% endfor %}
+    </div>
+    
+    <!-- Bouton Voir Plus -->
+    <div class="text-center mt-5">
+      <a href="{% url 'koutyUsers:produit' %}" class="btn btn-primary">
         Voir plus de produits >>>
       </a>
     </div>
-</div>
-    
-    </section><!-- /Products Section -->
-    
-    <!-- Departments Section -->
-    <section id="departments" class="departments section">
+  </div>
 
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Nos partenaires</h2>
-        <p>Voici nos divers partenaires</p>
-      </div><!-- End Section Title -->
+</section><!-- /Products Section -->
 
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-  <div class="row">
-    {% for partenaire in partenaire %}
-      <div class="col-md-3 mb-4" >
-        <div class="card partner-card" >
-          <div style="width: 100%; height: 200px; overflow: hidden;">
-            <img src="{{ partenaire.image.url }}" class="card-img-top" alt="{{ partenaire.nom }} image" style="width: 100%; height: 100%; object-fit: cover;">
-          </div>
-          <div class="card-body">
-            <h5 class="card-title partner-card-title" style="width: 100%; height: 40px;">{{ partenaire.nom }}</h5>
-            <p class="card-text" style="width: 100%; height: 100px;">{{ partenaire.description }}</p>
+<style>
+  .product-card {
+    transition: transform 0.3s, box-shadow 0.3s;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  }
+  .product-img {
+    height: 250px;
+    overflow: hidden;
+  }
+  .product-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s;
+  }
+  .product-card:hover .product-img img {
+    transform: scale(1.05);
+  }
+  .product-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .product-title {
+    color: rgba(10,63,227,0.85);
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  .product-description {
+    font-size: 0.9rem;
+    color: #333;
+    flex-grow: 1;
+  }
+  .btn-primary {
+    background-color: rgba(10,63,227,0.65);
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+  }
+  .btn-primary:hover {
+    background-color: rgba(10,63,227,0.85);
+  }
+</style>
+
+<!-- Departments Section -->
+<section id="departments" class="departments py-5">
+
+  <!-- Section Title -->
+  <div class="container text-center mb-5" data-aos="fade-up">
+    <h2>Nos partenaires</h2>
+    <p>Voici nos divers partenaires</p>
+  </div><!-- End Section Title -->
+
+  <div class="container" data-aos="fade-up" data-aos-delay="100">
+    <div class="row">
+      {% for partenaire in partenaire %}
+        <div class="col-md-3 mb-4">
+          <div class="card h-100">
+            <img src="{{ partenaire.image.url }}" class="card-img-top" alt="{{ partenaire.nom }} image" style="object-fit: cover; height: 200px;">
+            <div class="card-body">
+              <h5 class="card-title" style="color: rgba(10,63,227,0.85);">{{ partenaire.nom }}</h5>
+              <p class="card-text">{{ partenaire.description }}</p>
+            </div>
           </div>
         </div>
-      </div>
-    {% endfor %}
+      {% endfor %}
+    </div>
   </div>
-</div>
 
-
-    </section><!-- Departments Section -->
+</section><!-- Departments Section -->
 
        <!-- Doctors Section -->
     <section id="doctors" class="doctors section">
@@ -215,7 +295,7 @@
       <div class="container">
   <div class="row gy-4">
     {% for specialiste in specialiste %}
-      <div class="col-md-4 mb-4">
+      <div class="col-lg-4 col-md-6" data-aos="fade-up">
         <div class="team-member d-flex align-items-start">
           <div class="pic" style="width: 150px; height: 150px; overflow: hidden; border-radius: 50%;">
             <img src="{{ specialiste.image.url }}" class="img-fluid" alt="{{ specialiste.nom }}" style="width: 100%; height: 100%; object-fit: cover;">
@@ -229,9 +309,9 @@
       </div><!-- End Team Member -->
     {% endfor %}
   <!-- Bouton Voir Plus -->
-     <div style="text-align: center; margin: 20px 0;color: #fff;">
-      <a href="{% url 'koutyUsers:specialiste' %}" class="btn-see-more" style="display: inline-block; padding: 10px 20px; font-size: 16px; color: #fff; background: #007bff; border-radius: 5px; text-decoration: none; transition: background-color 0.3s;">
-        Voir plus de spécialiste >>>
+     <div style="text-align: center; margin: 20px 0;">
+      <a href="{% url 'koutyUsers:specialiste' %}" class="btn-see-more" style="display: inline-block; padding: 10px 20px; font-size: 16px; color: #fff; background-color: rgba(10,63,227,0.65); border-radius: 5px; text-decoration: none; transition: background-color 0.3s;">
+        Voir plus >>>
       </a>
     </div>
   </div>
@@ -298,79 +378,51 @@
   </div>
 </section><!-- /Testimonials Section -->
 <!-- Recent Posts Section -->
-<section id="recent-posts" class="recent-posts section">
+<section id="recent-posts" class="recent-posts py-5">
   <!-- Section Title -->
-  <div class="container section-title" data-aos="fade-up">
-    <h2>Ils parlent de nous...</h2>
-        <p>Explorez les articles et les reportages qui mettent en lumière les réalisations 
-            et l'impact de notre entreprise .</p>
+  <div class="container mb-5" data-aos="fade-up">
+    <h2 class="text-center mb-3">Ils parlent de nous...</h2>
+    <p class="text-center text-muted">Explorez les articles et les reportages qui mettent en lumière les réalisations et l'impact de notre entreprise.</p>
   </div><!-- End Section Title -->
 
   <div class="container">
-    <div class="row gy-4">
+    <div class="row g-4">
       {% for mention in mentions %}
         <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|add:100 }}">
-          <a href="{{ mention.lien }}" style="text-decoration: none; color: inherit; display: block; transition: transform 0.3s, box-shadow 0.3s;">
-            <article style="width: 100%; height: 600px;background: #fff; border: 1px solid #ddd; border-radius: 5px; overflow: hidden; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); transition: transform 0.3s, box-shadow 0.3s;">
-              <div class="post-img" style="overflow: hidden;">
+            <article class="shadow-sm" style="background: #fff; border: 1px solid #ddd; border-radius: 5px; overflow: hidden; transition: transform 0.3s, box-shadow 0.3s;">
+              <div class="post-img">
                 {% if mention.image %}
-                  <img src="{{ mention.image.url }}" alt="Image de {{ mention.titre }}" style="width: 100%; height: 350px; object-fit: cover; transition: transform 0.3s;">
+                  <img src="{{ mention.image.url }}" alt="Image de {{ mention.titre }}" class="w-100" style="height: 200px; object-fit: cover; transition: transform 0.3s;">
                 {% else %}
-                  <img src="{% static '/img/kouty.png' %}" alt="Image par défaut" style="width: 100%; height: 350px; object-fit: cover; transition: transform 0.3s;">
+                  <img src="{% static '/img/kouty.png' %}" alt="Image par défaut" class="w-100" style="height: 200px; object-fit: cover; transition: transform 0.3s;">
                 {% endif %}
               </div>
 
-              <p class="post-category" style="font-size: 14px; color: #666; margin-left: 10px; margin-top: 10px;">{{ mention.source }}</p>
+              <p class="text-muted small mt-2 ms-3">{{ mention.source }}</p>
+              <h5 class="text-primary ms-3">{{ mention.titre }}</h5>
+              <p class="small ms-3 me-3">{{ mention.extrait }}</p>
 
-              <h2 class="title" style="margin-left: 10px; color: rgba(10,63,227,0.65);">
-                {{ mention.titre }}
-              </h2>
-
-              <p class="post-excerpt" style="font-size: 16px; color: #333; margin-left: 10px; margin-right: 10px;">
-                {{ mention.extrait }}
-              </p>
-
-              <div class="d-flex align-items-center">
-                <!-- Optionally, you can add an author image if available -->
-                <!-- <img src="assets/img/blog/blog-author.jpg" alt="" class="img-fluid post-author-img flex-shrink-0"> -->
-                <div class="post-meta">
-                  <p class="post-date" style="font-size: 14px; color: #999; margin: 5px;">
-                    <time datetime="{{ mention.date_publication|date:"Y-m-d" }}">{{ mention.date_publication|date:"M d, Y" }}</time>
-                  </p>
-                </div>
+              <div class="d-flex justify-content-between align-items-center mt-3 ms-3 me-3 mb-3">
+                <small class="text-muted">
+                  <time datetime="{{ mention.date_publication|date:'Y-m-d' }}">{{ mention.date_publication|date:'M d, Y' }}</time>
+                </small>
+                <a href="{{ mention.lien }}" class="btn btn-outline-primary btn-sm">Lire plus</a>
               </div>
-
             </article>
           </a>
         </div><!-- End post list item -->
       {% endfor %}
-    <!-- Bouton Voir Plus -->
-     <div style="text-align: center; margin: 20px 0;color: #fff;">
-      <a href="{% url 'koutyUsers:mention' %}" class="btn-see-more" style="display: inline-block; padding: 10px 20px; font-size: 16px; color: #fff; background: #007bff; border-radius: 5px; text-decoration: none; transition: background-color 0.3s;">
-        Voir plus d'Actualités >>>
-      </a>
-    </div>
+
+      <!-- Bouton Voir Plus -->
+      <div class="text-center mt-5">
+        <a href="{% url 'koutyUsers:mention' %}" class="btn btn-primary">Voir plus &gt;&gt;&gt;</a>
+      </div>
     </div><!-- End recent posts list -->
   </div>
 </section><!-- /Recent Posts Section -->
 
-<style>
-  /* Effet de survol pour l'article */
-  .recent-posts a:hover article {
-    transform: scale(1.02);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-  }
-  
-  /* Effet de survol pour l'image */
-  .recent-posts a:hover .post-img img {
-    transform: scale(1.05);
-  }
-  
-  /* Effet de survol pour le bouton Voir Plus */
-  .recent-posts a:hover div a {
-    background-color: rgba(10,63,227,0.85);
-  }
-</style>
+
+
 
     <!-- Contact Section -->
 <section id="contact" class="contact section">
@@ -413,7 +465,7 @@
       </div>
 
       <div class="col-lg-8">
-        <form id="contactForm" class="php-email-form" data-aos="fade-up" data-aos-delay="200" action="#" onsubmit="sendEmail(event)" style=" padding: 30px; border-radius: 8px;">
+        <form id="contactForm" class="php-email-form" data-aos="fade-up" data-aos-delay="200" action="javascript:void(0);" onsubmit="sendEmail(event)" style=" padding: 30px; border-radius: 8px;">
           <div class="row gy-4">
             <div class="col-md-6">
               <input type="text" id="name" class="form-control" placeholder="Votre Nom" required style="border: 1px solid #ddd; border-radius: 4px; padding: 15px; font-size: 16px; margin-bottom: 15px;">
@@ -450,7 +502,7 @@
 </section><!-- Contact Section -->
 <script>
 function sendEmail(event) { 
-  event.preventDefault();
+  event.preventDefault(); // Empêche l'envoi traditionnel du formulaire
 
   const name = document.getElementById('name').value;
   const email = document.getElementById('email').value;
@@ -460,9 +512,16 @@ function sendEmail(event) {
   const companyEmail = 'INFO@KOUTY.MA'; // Remplacez par l'email de votre entreprise
   const fullMessage = `Je suis ${name} et mon mail est : ${email}.\n\n${message}`;
 
+  // Vérifie si le sujet et le message ne dépassent pas une longueur raisonnable
+  if (subject.length > 78 || fullMessage.length > 2000) {
+    alert('Le sujet ou le message est trop long. Veuillez les raccourcir.');
+    return;
+  }
+
   const mailtoLink = `mailto:${companyEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(fullMessage)}`;
   
+  // Ouvre le lien mailto
   window.location.href = mailtoLink;
 }
-</script>    
+</script>   
 {% endblock %}
