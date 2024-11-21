@@ -1726,3 +1726,20 @@ section,
 .starter-section {
   /* Add your styles here */
 }
+
+
+/* Ajoutez ce CSS à votre fichier de styles */
+#cookie-consent-banner {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    z-index: 1000;
+}
+#cookie-consent-banner a {
+    color: #fff;
+    text-decoration: underline;
+}

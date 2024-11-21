@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        /* Ajoutez ce style pour le message d'erreur, si vous souhaitez toujours le cacher */
+        .error-message {
+            display: none; /* Masquer le message d'erreur par défaut */
+        }
+    </style>
+</head>
+<body>
+    <form id="contactForm" class="php-email-form" data-aos="fade-up" data-aos-delay="200" action="{% url 'contact:contact' %}" method="post" style="padding: 30px; border-radius: 8px;">
+        {% csrf_token %}
+        <div class="row gy-4">
+            <div class="col-md-6">
+                <input type="text" name="name" id="name" class="form-control" placeholder="Votre Nom" required style="border: 1px solid #ddd; border-radius: 4px; padding: 15px; font-size: 16px; margin-bottom: 15px;">
+            </div>
+
+            <div class="col-md-6">
+                <input type="email" name="email" id="email" class="form-control" placeholder="Votre Email" required style="border: 1px solid #ddd; border-radius: 4px; padding: 15px; font-size: 16px; margin-bottom: 15px;">
+            </div>
+
+            <div class="col-md-12">
+                <input type="text" name="subject" id="subject" class="form-control" placeholder="Objet" required style="border: 1px solid #ddd; border-radius: 4px; padding: 15px; font-size: 16px; margin-bottom: 15px;">
+            </div>
+
+            <div class="col-md-12">
+                <textarea name="message" id="message" class="form-control" rows="6" placeholder="Message" required style="border: 1px solid #ddd; border-radius: 4px; padding: 15px; font-size: 16px; margin-bottom: 15px;"></textarea>
+            </div>
+
+            <div class="col-md-12 text-center">
+                <div class="sent-message" style="display: none; color: #28a745; "><a style="color:#ffffff"> Votre message a été envoyé. Merci!</a></div>
+                <button type="submit" style="background: #007bff; border: none; padding: 15px 30px; color: #fff; font-size: 16px; border-radius: 4px; cursor: pointer;">Envoyer le message</button>
+            </div>
+        </div>
+    </form>
+<script>
+    $(document).ready(function() {
+        $('#contactForm').on('submit', function(e) {
+            e.preventDefault();
+
+            // Désactiver le bouton pour éviter les clics répétés
+            const submitButton = $(this).find('button[type="submit"]');
+            submitButton.prop('disabled', true);
+            
+            $('.loading').show();
+            $('.error-message').hide();
+            $('.sent-message').hide();
+
+            $.ajax({
+                type: 'POST',
+                url: $(this).attr('action'),
+                data: $(this).serialize(),
+                dataType: 'json',
+                success: function(response) {
+                    $('.loading').hide();
+                    submitButton.prop('disabled', false); // Réactiver le bouton après la requête
+                    if (response.status === 'success') {
+                        $('.sent-message').show();
+                        $('#contactForm')[0].reset();
+                    } else {
+                        $('.error-message').text(response.errors || 'Une erreur est survenue.').show();
+                    }
+                },
+                error: function() {
+                    $('.loading').hide();
+                    submitButton.prop('disabled', false); // Réactiver le bouton après la requête
+                    $('.error-message').text('Une erreur s\'est produite. Veuillez réessayer.').show();
+                }
+            });
+        });
+    });
+</script>
+
+</body>
+</html>

@@ -1,6 +1,6 @@
 from django.core.paginator import Paginator
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from kouty.models import *
 
 def index(request):
@@ -11,8 +11,12 @@ def index(request):
     temoins = Temoin.objects.all()
     mentions = Mention.objects.all().order_by('-date_publication')[:3]
 
-
-
+    stats = {
+        'partners': 50,
+        'specialists': 120,
+        'clients': 300,
+        'sold_products': 500,
+    }
     context = {
         'service': service,
         'produit': produit,
@@ -52,3 +56,8 @@ def specialiste(request):
     specialistes = paginator.get_page(page_number)  # Obtient les spécialistes de la page demandée
 
     return render(request, 'specialistsPage.html', {'specialistes': specialistes})
+
+def set_cookie_consent(request):
+    response = HttpResponse("Cookie consent set")
+    response.set_cookie('cookie_consent', 'accepted', max_age=60*60*24*365)  # 1 an
+    return redirect('/')

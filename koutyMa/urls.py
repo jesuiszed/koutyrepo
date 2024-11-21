@@ -24,7 +24,6 @@ urlpatterns = [
     re_path(r"^static/(?P<path>.*)$", serve, {"document_root": settings.STATIC_ROOT}),
     re_path(r"^media/(?P<path>.*)$", serve, {"document_root": settings.MEDIA_ROOT}),
     path('', include('koutyUsers.urls')),
-    path('koutysuperusers/', include('koutyAdmin.urls')),
-
+    path('contact/', include('kouty.urls')),
 ]
 

@@ -1,7 +1,6 @@
 {%extends  'base.html'%}
 {% load static %}
 {% block content %}
-    
     <style>
   /* Effet de survol pour l'article */
   .recent-posts a:hover article {
@@ -27,7 +26,7 @@
       <div class="container position-relative">
 
         <div class="welcome position-relative" data-aos="fade-down" data-aos-delay="100">
-          <h2>Bienvenu sur KOUTY Medical Service</h2>
+          <h2>Bienvenue sur KOUTY Medical Service</h2>
             <p>Votre partenaire pour des soins médicaux de qualité .</p>
         </div><!-- End Welcome -->
 
@@ -126,6 +125,41 @@
       </div>
 
     </section><!-- /About Section -->
+<!-- Stats Section -->
+<section id="stats" class="stats section light-background">
+  <div class="container" data-aos="fade-up" data-aos-delay="100">
+    <div class="row gy-4">
+      <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center">
+        <i class="fas fa-handshake"></i>
+        <div class="stats-item">
+            <span >+40</span>
+          <p>Partenaires</p>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center">
+        <i class="fas fa-user-md"></i>
+        <div class="stats-item">
+            <span >+70</span>
+            <p>Spécialistes</p>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center">
+        <i class="fas fa-users"></i>
+        <div class="stats-item">
+          <span >+500</span>
+          <p>Clients</p>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center">
+        <i class="fas fa-boxes"></i>
+        <div class="stats-item">
+            <span >+250</span>
+          <p>Produits Vendus</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- Services Section -->
 <section id="services" class="services section py-5">
@@ -381,7 +415,7 @@
 <section id="recent-posts" class="recent-posts py-5">
   <!-- Section Title -->
   <div class="container mb-5" data-aos="fade-up">
-    <h2 class="text-center mb-3">Ils parlent de nous...</h2>
+    <h2 class="text-center mb-3">Actualités</h2>
     <p class="text-center text-muted">Explorez les articles et les reportages qui mettent en lumière les réalisations et l'impact de notre entreprise.</p>
   </div><!-- End Section Title -->
 
@@ -458,41 +492,14 @@
           <i class="bi bi-envelope flex-shrink-0"></i>
           <div>
             <h3>Envoyez-nous un mail</h3>
-            <p>INFO@KOUTY.MA</p>
+            <p>info@kouty.ma</p>
           </div>
         </div> <!-- End Info Item -->
 
       </div>
 
       <div class="col-lg-8">
-        <form id="contactForm" class="php-email-form" data-aos="fade-up" data-aos-delay="200" action="javascript:void(0);" onsubmit="sendEmail(event)" style=" padding: 30px; border-radius: 8px;">
-          <div class="row gy-4">
-            <div class="col-md-6">
-              <input type="text" id="name" class="form-control" placeholder="Votre Nom" required style="border: 1px solid #ddd; border-radius: 4px; padding: 15px; font-size: 16px; margin-bottom: 15px;">
-            </div>
-
-            <div class="col-md-6">
-              <input type="email" id="email" class="form-control" placeholder="Votre Email" required style="border: 1px solid #ddd; border-radius: 4px; padding: 15px; font-size: 16px; margin-bottom: 15px;">
-            </div>
-
-            <div class="col-md-12">
-              <input type="text" id="subject" class="form-control" placeholder="Objet" required style="border: 1px solid #ddd; border-radius: 4px; padding: 15px; font-size: 16px; margin-bottom: 15px;">
-            </div>
-
-            <div class="col-md-12">
-              <textarea id="message" class="form-control" rows="6" placeholder="Message" required style="border: 1px solid #ddd; border-radius: 4px; padding: 15px; font-size: 16px; margin-bottom: 15px;"></textarea>
-            </div>
-
-            <div class="col-md-12 text-center">
-              <div class="loading" style="display: none;">Chargement</div>
-              <div class="error-message" style="display: none; color: #dc3545;"></div>
-              <div class="sent-message" style="display: none; color: #28a745;">Votre message a été envoyé. Merci!</div>
-
-              <button type="submit" style="background: #007bff; border: none; padding: 15px 30px; color: #fff; font-size: 16px; border-radius: 4px; cursor: pointer;">Envoyer le message</button>
-            </div>
-          </div>
-        </form>
-
+          {% include 'contact.html' %}
       </div><!-- End Contact Form -->
 
     </div>
@@ -500,28 +507,4 @@
   </div>
 
 </section><!-- Contact Section -->
-<script>
-function sendEmail(event) { 
-  event.preventDefault(); // Empêche l'envoi traditionnel du formulaire
-
-  const name = document.getElementById('name').value;
-  const email = document.getElementById('email').value;
-  const subject = document.getElementById('subject').value;
-  const message = document.getElementById('message').value;
-
-  const companyEmail = 'INFO@KOUTY.MA'; // Remplacez par l'email de votre entreprise
-  const fullMessage = `Je suis ${name} et mon mail est : ${email}.\n\n${message}`;
-
-  // Vérifie si le sujet et le message ne dépassent pas une longueur raisonnable
-  if (subject.length > 78 || fullMessage.length > 2000) {
-    alert('Le sujet ou le message est trop long. Veuillez les raccourcir.');
-    return;
-  }
-
-  const mailtoLink = `mailto:${companyEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(fullMessage)}`;
-  
-  // Ouvre le lien mailto
-  window.location.href = mailtoLink;
-}
-</script>   
 {% endblock %}

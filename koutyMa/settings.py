@@ -22,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-wj!-7^7iv8&7@20%!z@$(!$g%61a1rg32bvkvxh^gk!fj^d2#p'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG=False
+DEBUG=True
 ALLOWED_HOSTS = ['kouty.ma', 'localhost', 'noble-simply-sturgeon.ngrok-free.app', '192.168.167.86']
 
 # Application definition
@@ -127,4 +127,17 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_URL = 'media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# Ajoutez cette ligne au début du fichier
+
+# ... autres configurations ...
+
+# Email configuration
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'kouty.ma'
+EMAIL_PORT = 465
+EMAIL_USE_SSL = True
+EMAIL_HOST_USER = 'request@kouty.ma'
+EMAIL_HOST_PASSWORD = 'Nsyf2{ysH4m^'
+DEFAULT_FROM_EMAIL = 'request@kouty.ma'
 

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+    <!-- Ajoutez ici vos liens CSS -->
+</head>
+<body>
+    <header>
+        <h1>Contactez-nous</h1>
+    </header>
+
+    <main>
+        <form id="contactForm" class="php-email-form" data-aos="fade-up" data-aos-delay="200" method="post" action="{% url 'contact' %}" style="padding: 30px; border-radius: 8px;">
+            {% csrf_token %}
+            <div class="row gy-4">
+                <div class="col-md-6">
+                    <input type="text" id="name" name="name" class="form-control" placeholder="Votre Nom" required style="border: 1px solid #ddd; border-radius: 4px; padding: 15px; font-size: 16px; margin-bottom: 15px;">
+                </div>
+
+                <div class="col-md-6">
+                    <input type="email" id="email" name="email" class="form-control" placeholder="Votre Email" required style="border: 1px solid #ddd; border-radius: 4px; padding: 15px; font-size: 16px; margin-bottom: 15px;">
+                </div>
+
+                <div class="col-md-12">
+                    <input type="text" id="subject" name="subject" class="form-control" placeholder="Objet" required style="border: 1px solid #ddd; border-radius: 4px; padding: 15px; font-size: 16px; margin-bottom: 15px;">
+                </div>
+
+                <div class="col-md-12">
+                    <textarea id="message" name="message" class="form-control" rows="6" placeholder="Message" required style="border: 1px solid #ddd; border-radius: 4px; padding: 15px; font-size: 16px; margin-bottom: 15px;"></textarea>
+                </div>
+
+                <div class="col-md-12 text-center">
+                    <div class="loading" style="display: none;">Chargement</div>
+                    <div class="error-message" style="display: none; color: #dc3545;"></div>
+                    <div class="sent-message" style="display: none; color: #28a745;">Votre message a été envoyé. Merci!</div>
+
+                    <button type="submit" style="background: #007bff; border: none; padding: 15px 30px; color: #fff; font-size: 16px; border-radius: 4px; cursor: pointer;">Envoyer le message</button>
+                </div>
+            </div>
+        </form>
+    </main>
+
+    <!-- Ajoutez ici vos scripts JavaScript -->
+</body>
+</html>
